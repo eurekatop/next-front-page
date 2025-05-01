@@ -28,18 +28,6 @@ export default function Home({ posts }) {
   )
 }
 
-// export async function getStaticProps({ locale }) {
-//   const slugs = getPostSlugs(locale)
-//   const posts = slugs
-//     .map((slug) => getPostBySlug(slug, locale))
-//     .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
-// 
-//   return {
-//     props: {
-//       posts,
-//     },
-//   }
-// }
 
 export async  function getServerSideProps({ locale }) {
   const slugs = getPostSlugs(locale)
