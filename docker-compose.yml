@@ -2,13 +2,16 @@ version: '3.8'
 
 services:
   web:
+    platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
-#      platform: linux/arm64
+      args:
+        BASE_CONTENT_DIR: ${BASE_CONTENT_DIR}
+        NODE_ENV: ${NODE_ENV}
     container_name: next-front-page
     ports:
       - "${PORT}:${PORT}"
     env_file:
       - .env
-    restart: unless-stopped
+    #restart: unless-stopped

@@ -35,7 +35,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <nav className="nav">
           <Link href="/" className="nav-link">Inici</Link>
           <Link href="/blog" className="nav-link">Blog</Link>
-          <Link href="/blog/categories" className="nav-link">Categories</Link>
+          <Link href="/categories" className="nav-link">Categories</Link>
         </nav>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
           <LanguageSwitcher />

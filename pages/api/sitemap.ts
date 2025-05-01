@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getPostSlugs, getPostBySlug } from '../../lib/posts'
 
-const baseUrl = 'https://example.com' // 🔁 Substitueix pel teu domini real
+const baseUrl = 'https://eurekatop.com' // 🔁 Substitueix pel teu domini real
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const locales = ['ca', 'es', 'en']

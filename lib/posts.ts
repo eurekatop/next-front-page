@@ -29,6 +29,14 @@ const BASE_DIR = process.env.BASE_CONTENT_DIR
 
 
 export function getPostSlugs(locale: string): string[] {
+  console.log ('BASE_DIR', BASE_DIR);
+  if (!BASE_DIR) {
+    throw new Error('BASE_CONTENT_DIR is not set')
+  }
+
+  if (!locale) {
+    throw new Error('Locale is not set')
+  }
   const dir = path.join(BASE_DIR, 'posts', locale)
   if (!fs.existsSync(dir)) return []
 

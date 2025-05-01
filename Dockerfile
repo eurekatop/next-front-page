@@ -1,6 +1,16 @@
 # Etapa 1: Build
 FROM node:18-slim AS builder
 
+ARG BASE_CONTENT_DIR
+ENV BASE_CONTENT_DIR=${BASE_CONTENT_DIR}
+
+ARG NODE_ENV
+ENV NODE_ENV=${NODE_ENV}
+
+# DEBUG SHOW VALUES OF ENV VARS
+RUN echo "BASE_CONTENT_DIR=${BASE_CONTENT_DIR}"
+RUN echo "NODE_ENV=${NODE_ENV}"
+
 WORKDIR /app
 
 # Instal·la dependències
@@ -15,6 +25,7 @@ RUN npm run build
 
 # Etapa 2: Execució amb distroless
 FROM gcr.io/distroless/nodejs18-debian11 AS runner
+#FROM node:18-alpine AS runner
 
 WORKDIR /app
 
@@ -23,10 +34,16 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/server.js ./start-server.js
+COPY --from=builder /app/start-server.js ./start-server.js
+COPY --from=builder /app/posts ./posts
+COPY --from=builder /app/next.config.js ./next.config.js
+COPY --from=builder /app/./next-i18next.config.js ./next-i18next.config.js
 
 # Port exposat
 EXPOSE 3000
 
 # Comanda per executar l'aplicació
-CMD ["start-server.js"]
+#CMD ["start-server.js"]
+
+# Run with Node.js explicitly
+CMD ["node", "start-server.js"]
