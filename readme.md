@@ -94,5 +94,6 @@ Posts filtrats per categoria
 -   
 
 ## HOW TO DEPLOY
+export NODE_ENV=production
 npm run build
 npm run start-server
