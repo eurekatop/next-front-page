@@ -1,0 +1,67 @@
+/* -------- Cos base -------- */
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    background: #f5f7fa;
+    color: #222;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* -------- Contenidor -------- */
+  .container {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  }
+  
+  /* -------- Títols -------- */
+  h1, h2, h3 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #1a202c;
+  }
+  
+  /* -------- Enllaços -------- */
+  a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* -------- Llista de posts -------- */
+  ul {
+    padding-left: 1.2rem;
+  }
+  
+  li {
+    margin-bottom: 1rem;
+  }
+  
+  /* -------- Footer -------- */
+  footer {
+    font-size: 0.9rem;
+    text-align: center;
+    color: #666;
+  }
+  
+  /* -------- Cards (opcional) -------- */
+  .card {
+    padding: 1rem;
+    background: #fefefe;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    transition: transform 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  

@@ -1,61 +1,55 @@
 import Link from 'next/link'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { getPostBySlug, getPostSlugs } from '../lib/posts'
+import { getPostSlugs, getPostBySlug } from '../lib/posts'
 
-
-type Props = {
-  posts: {
-    slug: string
-    frontmatter: {
-      title: string
-      date: string
-      categories?: string[]
-    }
-  }[]
-}
-
-export default function BlogIndex({ posts }: Props) {
-  const { t } = useTranslation('common')
-
+export default function Home({ posts }) {
   return (
-    <div>
-      <h1>{t('blog')}</h1>
-      {posts.length === 0 ? (
-        <p>{t('no_posts')}</p>
-      ) : (
-        <ul>
-          {posts.map((post) => (
-            <li key={post.slug}>
-              <Link href={`/blog/${post.slug}`}>
-                {post.frontmatter.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="container">
+      <h1>Benvingut a Eurekatop</h1>
+      <p>Explora idees, tecnologia i contingut. Tot el que no sabies que volies llegir. 😉</p>
 
-      <div style={{ marginTop: '2rem' }}>
-        🌐 <b>{t('change_language')}:</b>
-        <ul>
-          <li><Link href="/blog" locale="ca">Català</Link></li>
-          <li><Link href="/blog" locale="es">Castellano</Link></li>
-          <li><Link href="/blog" locale="en">English</Link></li>
-        </ul>
-      </div>
+      <h2>Últims articles</h2>
+      <ul>
+        {posts.slice(0, 5).map((post) => (
+          <li key={post.slug} className="card">
+            <Link href={`/blog/${post.slug}`}>
+              <strong>{post.frontmatter.title}</strong>
+            </Link>
+            <p style={{ margin: '0.25rem 0', fontSize: '0.9rem', color: '#666' }}>
+              {new Date(post.frontmatter.date).toLocaleDateString()}
+            </p>
+          </li>
+        ))}
+      </ul>
 
+      <p style={{ marginTop: '2rem' }}>
+        <Link href="/blog">Veure tots els articles →</Link>
+      </p>
     </div>
   )
 }
 
-export async function getStaticProps({ locale }: { locale: string }) {
+// export async function getStaticProps({ locale }) {
+//   const slugs = getPostSlugs(locale)
+//   const posts = slugs
+//     .map((slug) => getPostBySlug(slug, locale))
+//     .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
+// 
+//   return {
+//     props: {
+//       posts,
+//     },
+//   }
+// }
+
+export async  function getServerSideProps({ locale }) {
   const slugs = getPostSlugs(locale)
-  const posts = slugs.map((slug) => getPostBySlug(slug, locale))
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug, locale))
+    .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
 
   return {
     props: {
       posts,
-      ...(await serverSideTranslations(locale, ['common']))
-    }
+    },
   }
 }

@@ -13,17 +13,6 @@ export default function PostPage({ source, frontmatter }) {
     <div>
       <h1>{frontmatter.title}</h1>
       <MDXRemote {...source} />
-
-
-      <div style={{ marginTop: '2rem' }}>
-        🌐 <b>{t('change_language')}:</b>
-        <ul>
-          <li><Link href="/blog" locale="ca">Català</Link></li>
-          <li><Link href="/blog" locale="es">Castellano</Link></li>
-          <li><Link href="/blog" locale="en">English</Link></li>
-        </ul>
-      </div>
-
     </div>
   )
 }
