@@ -1,0 +1,48 @@
+:root {
+    --bg: #fff;
+    --text: #000;
+    --footer-bg: #eee;
+  }
+  
+  .dark {
+    --bg: #111;
+    --text: #eee;
+    --footer-bg: #222;
+  }
+  
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    font-family: system-ui, sans-serif;
+  }
+  
+  .header {
+    padding: 1rem;
+    background: var(--footer-bg);
+    color: var(--text);
+  }
+  
+  .nav {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .nav-link {
+    color: var(--text);
+    margin-right: 1rem;
+    text-decoration: none;
+  }
+  
+  .footer {
+    padding: 1rem;
+    background: var(--footer-bg);
+    margin-top: 2rem;
+  }
+  
+  .footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 0.9rem;
+  }
+  

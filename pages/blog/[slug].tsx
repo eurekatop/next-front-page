@@ -5,6 +5,11 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
+import CustomLink from '../../components/CustomLink'
+
+const components = {
+  a: CustomLink,
+}
 
 export default function PostPage({ source, frontmatter }) {
   const { t } = useTranslation('common')  
@@ -26,7 +31,7 @@ export default function PostPage({ source, frontmatter }) {
     }}
   />
 )}
-      <MDXRemote {...source} />
+      <MDXRemote {...source} components={components} />
     </div>
   )
 }
