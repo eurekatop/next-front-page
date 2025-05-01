@@ -5,6 +5,10 @@ import matter from 'gray-matter'
 export interface Frontmatter {
   title: string
   date: string
+  summary: string
+  slug: string
+  image?: string
+  imageAlt?: string
   categories?: string[]
   tags?: string[]
   author?: string
@@ -17,26 +21,68 @@ const fallbackLocales = {
   en: ['es', 'ca']
 }
 
-export function getPostSlugs(locale: string) {
-  const dir = path.join(process.cwd(), 'posts', locale)
-  return fs.existsSync(dir) ? fs.readdirSync(dir) : []
+
+const BASE_DIR = process.env.BASE_CONTENT_DIR
+  ? path.resolve(process.cwd(), process.env.BASE_CONTENT_DIR)
+  : path.join(process.cwd(), '')
+
+
+
+export function getPostSlugs(locale: string): string[] {
+  const dir = path.join(BASE_DIR, 'posts', locale)
+  if (!fs.existsSync(dir)) return []
+
+  return fs.readdirSync(dir)
+    .filter((file) => file.endsWith('.mdx'))
+    .map((file) => {
+      const fullPath = path.join(dir, file)
+      const fileContents = fs.readFileSync(fullPath, 'utf8')
+      const { data } = matter(fileContents)
+      return data.slug
+    })
+    .filter(Boolean) // només si hi ha slug
 }
 
 export function getPostBySlug(slug: string, locale: string) {
-  const realSlug = slug.replace(/\.mdx$/, '')
-  let fullPath = path.join(process.cwd(), 'posts', locale, `${realSlug}.mdx`)
+  const dir = path.join(BASE_DIR, 'posts', locale)
+  let fullPath: string | null = null
 
-  if (!fs.existsSync(fullPath)) {
-    for (const fallbackLocale of fallbackLocales[locale] || []) {
-      const fallbackPath = path.join(process.cwd(), 'posts', fallbackLocale, `${realSlug}.mdx`)
-      if (fs.existsSync(fallbackPath)) {
-        fullPath = fallbackPath
+  if (fs.existsSync(dir)) {
+    const files = fs.readdirSync(dir).filter((f) => f.endsWith('.mdx'))
+
+    for (const file of files) {
+      const pathCandidate = path.join(dir, file)
+      const fileContents = fs.readFileSync(pathCandidate, 'utf8')
+      const { data } = matter(fileContents)
+      if (data.slug === slug) {
+        fullPath = pathCandidate
         break
       }
     }
   }
 
-  if (!fs.existsSync(fullPath)) {
+  // Buscar en fallbacks si no trobat
+  if (!fullPath) {
+    for (const fallbackLocale of fallbackLocales[locale] || []) {
+      const fallbackDir = path.join(BASE_DIR, 'posts', fallbackLocale)
+      if (!fs.existsSync(fallbackDir)) continue
+      const files = fs.readdirSync(fallbackDir).filter((f) => f.endsWith('.mdx'))
+
+      for (const file of files) {
+        const pathCandidate = path.join(fallbackDir, file)
+        const fileContents = fs.readFileSync(pathCandidate, 'utf8')
+        const { data } = matter(fileContents)
+        if (data.slug === slug) {
+          fullPath = pathCandidate
+          break
+        }
+      }
+
+      if (fullPath) break
+    }
+  }
+
+  if (!fullPath) {
     throw new Error(`Post not found for slug "${slug}" in locale "${locale}" or fallbacks.`)
   }
 
@@ -44,7 +90,7 @@ export function getPostBySlug(slug: string, locale: string) {
   const { data, content } = matter(fileContents)
 
   return {
-    slug: realSlug,
+    slug: data.slug,
     frontmatter: data as Frontmatter,
     content
   }

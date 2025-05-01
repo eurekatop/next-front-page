@@ -12,6 +12,20 @@ export default function PostPage({ source, frontmatter }) {
   return (
     <div>
       <h1>{frontmatter.title}</h1>
+      {frontmatter.image && (
+  <img
+    src={frontmatter.image}
+    alt={frontmatter.title}
+    style={{
+      display: 'block',
+      maxWidth: '300px',
+      width: '100%',
+      height: 'auto',
+      margin: '1rem auto',
+      borderRadius: '8px',
+    }}
+  />
+)}
       <MDXRemote {...source} />
     </div>
   )

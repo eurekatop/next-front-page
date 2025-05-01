@@ -6,5 +6,8 @@ const withMDX = require('@next/mdx')({
 
 module.exports = withMDX({
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
-  i18n
+  i18n,
+  env: {
+    BASE_CONTENT_DIR: process.env.BASE_CONTENT_DIR,
+  },
 })
