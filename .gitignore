@@ -1,0 +1,45 @@
+# Node modules
+node_modules/
+
+# Build output
+.next/
+out/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env*
+!.env.example
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Optional runtime data
+coverage/
+.cache/
+.next-turbo/
+
+# Editor configs
+.vscode/
+.idea/
+
+# TypeScript
+*.tsbuildinfo
+
+# Custom
+*.zip
+*.tgz
+
+# Dependency lock if not used
+# yarn.lock
+# pnpm-lock.yaml
+
+# Optional: ignore public content generated dynamically
+public/sitemap.xml
+public/robots.txt
