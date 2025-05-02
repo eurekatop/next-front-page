@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "@next/mdx": "^13.5.11",
+    "dompurify": "^3.2.5",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
     "i18next": "^25.0.2",
+    "jsdom": "^26.1.0",
+    "marked": "^15.0.11",
     "next": "latest",
     "next-i18next": "^15.4.2",
     "next-mdx-remote": "^5.0.0",

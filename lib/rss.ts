@@ -1,4 +1,11 @@
 import { Feed } from 'feed';
+import { JSDOM } from 'jsdom';
+import createDOMPurify from 'dompurify';
+import { marked } from 'marked';
+
+const window = new JSDOM('').window as any;
+const DOMPurify = createDOMPurify(window);
+
 
 function escapeHtml(text: string) {
   return text.replace(/&/g, '&amp;')
@@ -8,6 +15,7 @@ function escapeHtml(text: string) {
              .replace(/'/g, '&#39;');
 }
 
+//TODO: type posts
 export function generateRssFeed(posts: any[], locale: string) {
   const siteUrl = 'https://eurekatop.com'; 
   const feed = new Feed({
@@ -28,12 +36,16 @@ export function generateRssFeed(posts: any[], locale: string) {
 
     console.log('Post:', post);
 
+    const html = marked(post.content);
+    const cleanHtml = DOMPurify.sanitize(html as string);
+    
+
     feed.addItem({
       title: post.frontmatter.title || '[Sense títol]',
       id: `${siteUrl}/${locale}/blog/${post.frontmatter.slug}`,
       link: `${siteUrl}/${locale}/blog/${post.frontmatter.slug}`,
       description: escapeHtml(post.frontmatter.summary),
-      content: escapeHtml(post.contentHtml || post.content),
+      content: cleanHtml,
       date: new Date(post.frontmatter.date),
     });
   });
