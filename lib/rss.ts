@@ -14,13 +14,16 @@ export function generateRssFeed(posts: any[], locale: string) {
   });
 
   posts.forEach(post => {
+
+    console.log('Post:', post);
+
     feed.addItem({
-      title: post.title,
-      id: `${siteUrl}/${locale}/blog/${post.slug}`,
-      link: `${siteUrl}/${locale}/blog/${post.slug}`,
-      description: post.excerpt,
+      title: post.frontmatter.title || '[Sense títol]',
+      id: `${siteUrl}/${locale}/blog/${post.frontmatter.slug}`,
+      link: `${siteUrl}/${locale}/blog/${post.frontmatter.slug}`,
+      description: post.frontmatter.excerpt,
       content: post.contentHtml || post.content,
-      date: new Date(post.date),
+      date: new Date(post.frontmatter.date),
     });
   });
 

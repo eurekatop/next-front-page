@@ -17,8 +17,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const slugs = getPostSlugs(locale);
     const posts = slugs.map((slug) => getPostBySlug(slug.replace(/\.mdx$/, ''), locale));
   
-    console.log('posts', posts);
-
     const rss = generateRssFeed(posts, locale); // Pass locale to feed generator
   
     res.setHeader('Content-Type', 'application/rss+xml; charset=utf-8');

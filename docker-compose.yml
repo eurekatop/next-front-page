@@ -15,6 +15,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ./public:/app/public
-      - ./posts:/app/posts
+      # - ./public:/app/public
+      # - ./posts:/app/posts
+      - /var/www/eurekatop/public:/app/public
+      - /var/www/eurekatop/posts:/app/posts
     #restart: unless-stopped
