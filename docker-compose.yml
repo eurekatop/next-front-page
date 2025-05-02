@@ -14,4 +14,7 @@ services:
       - "${PORT}:${PORT}"
     env_file:
       - .env
+    volumes:
+      - ./public:/app/public
+      - ./posts:/app/posts
     #restart: unless-stopped

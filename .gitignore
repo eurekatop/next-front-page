@@ -42,4 +42,4 @@ coverage/
 
 # Optional: ignore public content generated dynamically
 public/sitemap.xml
-public/robots.txt
+#public/robots.txt

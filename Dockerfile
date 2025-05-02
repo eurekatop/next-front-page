@@ -20,12 +20,15 @@ RUN npm install --production
 # Copia el codi font
 COPY . .
 
+# Elimina les carpetes public i posts per assegurar que no col·lisionen amb el volum
+RUN rm -rf public posts
+
 # Compila l'aplicació (Next.js o qualsevol framework)
 RUN npm run build
 
 # Etapa 2: Execució amb distroless
-FROM gcr.io/distroless/nodejs18-debian11 AS runner
-#FROM node:18-alpine AS runner
+#FROM gcr.io/distroless/nodejs18-debian11 AS runner
+FROM node:18-alpine AS runner
 
 WORKDIR /app
 
@@ -46,4 +49,4 @@ EXPOSE 3000
 #CMD ["start-server.js"]
 
 # Run with Node.js explicitly
-CMD ["node", "start-server.js"]
+CMD ["start-server.js"]
