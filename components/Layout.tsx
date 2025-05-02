@@ -3,9 +3,13 @@
 import Link from 'next/link'
 import { ReactNode, useEffect, useState } from 'react'
 import LanguageSwitcher from './LanguageSwitcher'
+import Head from 'next/head'
+import { useTranslation } from 'next-i18next';
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [darkMode, setDarkMode] = useState(false)
+  const { t, i18n } = useTranslation('common');
+  const locale = i18n.language;
 
   // Inicialitza l'estat segons localStorage
   useEffect(() => {
@@ -31,6 +35,15 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   return (
     <>
+      <Head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`Eurekatop (${locale})`}
+          href={`/api/rss.xml?locale=${locale}`}
+        />
+      </Head>
+      
       <header className="header">
         <nav className="nav">
           <Link href="/" className="nav-link">Inici</Link>

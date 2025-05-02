@@ -93,6 +93,12 @@ Posts filtrats per categoria
 -   🔄 Connexió amb CMS Headless (Strapi, Sanity...)
 -   
 
+
+## HOW TO DEVELOP
+export NODE_ENV=development
+npm run dev
+
+
 ## HOW TO DEPLOY
 export NODE_ENV=production
 npm run build
