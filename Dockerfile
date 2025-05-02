@@ -18,27 +18,41 @@ COPY package*.json ./
 RUN npm install --production
 
 # Copia el codi font
-COPY . .
+#COPY . .
+
+COPY pages/ ./pages/
+COPY components/ ./components/
+COPY lib/ ./lib/
+COPY public/ ./public/
+COPY .env ./
+COPY next-env.d.ts ./
+COPY next-i18next.config.js ./
+COPY next.config.js ./
+COPY package.json ./
+COPY package-lock.json ./
+COPY start-server.js ./
+COPY tsconfig.json ./
+# Si tens més carpetes, afegeix-les aquí
 
 # Elimina les carpetes public i posts per assegurar que no col·lisionen amb el volum
-RUN rm -rf public posts
+#RUN rm -rf public posts
 
 # Compila l'aplicació (Next.js o qualsevol framework)
 RUN npm run build
 
 # Etapa 2: Execució amb distroless
-#FROM gcr.io/distroless/nodejs18-debian11 AS runner
-FROM node:18-alpine AS runner
+FROM gcr.io/distroless/nodejs18-debian11 AS runner
+#FROM node:18-alpine AS runner
 
 WORKDIR /app
 
 # Copiem només el que és necessari
-COPY --from=builder /app/public ./public
+#COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/start-server.js ./start-server.js
-COPY --from=builder /app/posts ./posts
+#COPY --from=builder /app/posts ./posts
 COPY --from=builder /app/next.config.js ./next.config.js
 COPY --from=builder /app/./next-i18next.config.js ./next-i18next.config.js
 
