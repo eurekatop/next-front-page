@@ -33,7 +33,7 @@ export function generateRssFeed(posts: any[], locale: string) {
       id: `${siteUrl}/${locale}/blog/${post.frontmatter.slug}`,
       link: `${siteUrl}/${locale}/blog/${post.frontmatter.slug}`,
       description: escapeHtml(post.frontmatter.summary),
-      content: post.contentHtml || post.content,
+      content: escapeHtml(post.contentHtml || post.content),
       date: new Date(post.frontmatter.date),
     });
   });
