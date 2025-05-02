@@ -1,5 +1,13 @@
 import { Feed } from 'feed';
 
+function escapeHtml(text: string) {
+  return text.replace(/&/g, '&amp;')
+             .replace(/</g, '&lt;')
+             .replace(/>/g, '&gt;')
+             .replace(/"/g, '&quot;')
+             .replace(/'/g, '&#39;');
+}
+
 export function generateRssFeed(posts: any[], locale: string) {
   const siteUrl = 'https://eurekatop.com'; 
   const feed = new Feed({
@@ -11,6 +19,9 @@ export function generateRssFeed(posts: any[], locale: string) {
     image: `${siteUrl}/logo.png`,
     favicon: `${siteUrl}/favicon.ico`,
     copyright: `All rights reserved ${new Date().getFullYear()}`,
+    feedLinks: {
+      rss: `${siteUrl}/api/rss.xml?locale=${locale}`, 
+    },
   });
 
   posts.forEach(post => {
@@ -21,7 +32,7 @@ export function generateRssFeed(posts: any[], locale: string) {
       title: post.frontmatter.title || '[Sense títol]',
       id: `${siteUrl}/${locale}/blog/${post.frontmatter.slug}`,
       link: `${siteUrl}/${locale}/blog/${post.frontmatter.slug}`,
-      description: post.frontmatter.excerpt,
+      description: escapeHtml(post.frontmatter.summary),
       content: post.contentHtml || post.content,
       date: new Date(post.frontmatter.date),
     });
