@@ -42,7 +42,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           title={`Eurekatop (${locale})`}
           href={`/api/rss.xml?locale=${locale}`}
         />
-        <title>Eurekatop</title>
+        <title>{t("meta_title")}</title>
         <meta name="description" content={t("page.index.meta_desc")} />
 
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />

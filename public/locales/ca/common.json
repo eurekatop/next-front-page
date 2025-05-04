@@ -18,6 +18,7 @@
     "page" : {
         "index" : {
             "welcome" : " Explora idees, tecnologia i contingut. Tot el que no sabies que volies llegir. 😉",
+            "meta_title" : "Eurekatop – Paraules, Creativitat i Articles que Et Sorprendran",
             "meta_desc" : "Explora Eurekatop, el blog en sobre cultura digital, memòria, tecnologia, música i intel·ligència artificial"
         }
     }
