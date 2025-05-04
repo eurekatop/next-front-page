@@ -56,7 +56,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <Link href="/blog" className="nav-link">
             Blog
           </Link>
-          <Link href="/categories" className="nav-link">
+          <Link href="/blog/categories" className="nav-link">
             Categories
           </Link>
         </nav>

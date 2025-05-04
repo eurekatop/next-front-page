@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-import { getPostBySlug, getPostSlugs } from '../lib/posts'
+import { getPostBySlug, getPostSlugs } from '../../lib/posts'
+
 
 export default function CategoriesPage({ categories }: { categories: string[] }) {
   const { t } = useTranslation('common')
