@@ -20,7 +20,26 @@ export default function CategoriesPage({ categories }: { categories: string[] })
   )
 }
 
-export async function getStaticProps({ locale }: { locale: string }) {
+//export async function getStaticProps({ locale }: { locale: string }) {
+//  const slugs = getPostSlugs(locale)
+//  const posts = slugs.map((slug) => getPostBySlug(slug, locale))
+//
+//  const categories = new Set<string>()
+//  posts.forEach((post) => {
+//    (post.frontmatter.categories || ['Sense categoria']).forEach((cat) => {
+//      categories.add(cat)
+//    })
+//  })
+//
+//  return {
+//    props: {
+//      categories: Array.from(categories),
+//      ...(await serverSideTranslations(locale, ['common']))
+//    }
+//  }
+//}
+
+export async function getServerSideProps({ locale }: { locale: string }) {
   const slugs = getPostSlugs(locale)
   const posts = slugs.map((slug) => getPostBySlug(slug, locale))
 
