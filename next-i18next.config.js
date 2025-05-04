@@ -4,5 +4,6 @@ module.exports = {
     locales: ['ca', 'es', 'en']
   },
   ns: ['common'], 
-  defaultNS: 'common'
+  defaultNS: 'common',
+  keySeparator: '.'
 }

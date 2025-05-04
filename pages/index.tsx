@@ -1,17 +1,19 @@
 import Link from "next/link";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { getPostSlugs, getPostBySlug } from "../lib/posts";
+import { useTranslation } from "next-i18next";
 
 export default function Home({ posts }) {
+  const { t, i18n } = useTranslation("common");
+
   return (
     <div className="container">
-      <h1>Benvingut a Eurekatop</h1>
+      <h1>{t("welcome")}</h1>
       <p>
-        Explora idees, tecnologia i contingut. Tot el que no sabies que volies
-        llegir. 😉
+          {t("page.index.welcome")}
       </p>
 
-      <h2>Últims articles</h2>
+      <h2>{t("last_posts")}</h2>
       <ul style={{ listStyle: "none", paddingLeft: 0 }}>
         {posts.slice(0, 5).map((post) => (
           <li className="card" key={post.slug}>
@@ -43,7 +45,7 @@ export default function Home({ posts }) {
       </ul>
 
       <p style={{ marginTop: "2rem" }}>
-        <Link href="/blog">Veure tots els articles →</Link>
+        <Link href="/blog">{t("see_all_posts")}</Link>
       </p>
     </div>
   );

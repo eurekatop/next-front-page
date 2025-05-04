@@ -1,1 +1,24 @@
-{"welcome": "Welcome to my blog", "read_more": "Read more", "category": "Category", "change_language": "Change language", "blog": "Blog", "no_posts": "No posts available.", "categories": "categories"}
+{
+    "welcome": "Welcome to Eurekatop", 
+    "read_more": "Read more", 
+    "category": "Category", 
+    "change_language": "Change language", 
+    "blog": "Blog", 
+    "no_posts": "No posts available.", 
+    "categories": "categories",
+    "last_posts" : "Last posts",
+    "see_all_posts" : "Ver todos los artículos",
+    "light_mode": "☀️ Light mode",
+    "dark_mode": "🌙 Dark mode",
+    "topNav": {
+        "home": "Home",
+        "blog": "BLog",
+        "categories": "Categories"
+    },
+    "page" : {
+        "index" : {
+            "welcome" : "Explore ideas, technology, and content. Everything you didn't know you wanted to read. 😉",
+            "meta_desc" : "Explore Eurekatop, the blog about digital culture, memory, technology, music, and artificial intelligence"
+        }
+    }    
+}

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://eurekatop.com/api/sitemap
+Sitemap: https://eurekatop.com/sitemap.xml

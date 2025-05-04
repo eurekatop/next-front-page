@@ -42,22 +42,26 @@ export default function Layout({ children }: { children: ReactNode }) {
           title={`Eurekatop (${locale})`}
           href={`/api/rss.xml?locale=${locale}`}
         />
+        <title>Eurekatop</title>
+        <meta name="description" content={t("page.index.meta_desc")} />
+
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
         <link rel="manifest" href="/favicon_io/site.webmanifest"></link>
+
       </Head>
 
       <header className="header">
         <nav className="nav">
           <Link href="/" className="nav-link">
-            Inici
+            {t("topNav.home")}
           </Link>
           <Link href="/blog" className="nav-link">
-            Blog
+            {t("topNav.blog")}
           </Link>
           <Link href="/blog/categories" className="nav-link">
-            Categories
+            {t("topNav.categories")}
           </Link>
         </nav>
         <div
@@ -81,7 +85,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               marginLeft: "1rem",
             }}
           >
-            {darkMode ? "☀️ Mode clar" : "🌙 Mode fosc"}
+            {darkMode ? t("light_mode") : t("dark_mode")}  
           </button>
         </div>
       </header>

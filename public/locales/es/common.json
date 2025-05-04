@@ -1,1 +1,24 @@
-{"welcome": "Bienvenido a mi blog", "read_more": "Leer más", "category": "Categoría", "change_language": "Cambiar idioma", "blog": "Blog", "no_posts": "No hay artículos disponibles."}
+{
+    "welcome": "Bienvenido a Eureaktop", 
+    "read_more": "Leer más", 
+    "category": "Categoría", 
+    "change_language": "Cambiar idioma", 
+    "blog": "Blog", 
+    "no_posts": "No hay artículos disponibles.",
+    "categories": "categorías",
+    "last_posts" : "Últimos artículos",
+    "see_all_posts" : "See all posts",
+    "light_mode": "☀️ Modo claro",
+    "dark_mode": "🌙 Modo oscuro",
+    "topNav": {
+        "home": "Inicio",
+        "blog": "BLog",
+        "categories": "Categorías"
+    },
+    "page" : {
+        "index" : {
+            "welcome" : "Explora ideas, tecnología y contenido. Todo lo que no sabías que querías leer. 😉",
+            "meta_desc" : "Explora Eurekatop, el blog sobre cultura digital, memoria, tecnología, música i intel·ligència artificial"
+        }
+    }
+}
