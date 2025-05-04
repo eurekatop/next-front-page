@@ -18,8 +18,9 @@ export default function PostPage({ source, frontmatter }) {
   return (
     <>
       <Head>
-        <title>{frontmatter.title} | Eurekatop</title>
+        <title>{frontmatter.title ? `${frontmatter.title} | Eurekatop` : 'Fallback Title'}</title>
         <meta name="description" content={frontmatter.summary} />
+        <meta property="og:title" content={frontmatter.title}></meta>
       </Head>
       <div>
       <h1>{frontmatter.title}</h1>
