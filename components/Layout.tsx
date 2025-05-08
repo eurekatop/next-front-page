@@ -52,7 +52,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <link rel="manifest" href="/favicon_io/site.webmanifest"></link>
       </Head>
       
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} gaId={process.env.NEXT_PUBLIC_GA_ID} />
 
       <header className="header">
         <nav className="nav">

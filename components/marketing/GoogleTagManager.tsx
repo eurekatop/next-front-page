@@ -3,11 +3,13 @@ import Script from 'next/script';
 
 interface GoogleTagManagerPops {
   gtmId: string;
+  gaId: string;
 }
 
-const GTM: React.FC<GoogleTagManagerPops> = ({ gtmId }) => (
+const GTM: React.FC<GoogleTagManagerPops> = ({ gtmId, gaId }) => (
   <>
     {/* GTM Script in head */}
+        {/* GTM script */}
         <Script
         id="gtm-script"
         strategy="afterInteractive"
@@ -21,6 +23,24 @@ const GTM: React.FC<GoogleTagManagerPops> = ({ gtmId }) => (
         `,
         }}
         />
+
+        {/* GA4 script */}
+        <Script async defer src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+        <Script
+          id="g-analytics-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html:`
+                window.dataLayer=window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js',new Date());
+                
+
+                gtag('config',${gaId});
+            `
+          }}
+          />
+
     {/* GTM noscript for <body> (rendered manually) */}
     <div
       dangerouslySetInnerHTML={{
