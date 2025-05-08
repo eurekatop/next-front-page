@@ -5,6 +5,7 @@ import { ReactNode, useEffect, useState } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
+import GoogleTagManager from "./marketing/GoogleTagManager";
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [darkMode, setDarkMode] = useState(false);
@@ -49,8 +50,9 @@ export default function Layout({ children }: { children: ReactNode }) {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
         <link rel="manifest" href="/favicon_io/site.webmanifest"></link>
-
       </Head>
+      
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
 
       <header className="header">
         <nav className="nav">
