@@ -36,7 +36,7 @@ const GTM: React.FC<GoogleTagManagerPops> = ({ gtmId, gaId }) => (
                 gtag('js',new Date());
                 
 
-                gtag('config',${gaId});
+                gtag('config','${gaId}');
             `
           }}
           />
