@@ -96,10 +96,13 @@ Posts filtrats per categoria
 
 ## HOW TO DEVELOP
 export NODE_ENV=development
+export NEXT_PUBLIC_GTM_ID=XXX-XXXXX
+export NEXT_PUBLIC_GTM_ID=GTM-KTG8N34J
 npm run dev
 
 
 ## HOW TO DEPLOY
 export NODE_ENV=production
+export NEXT_PUBLIC_GTM_ID=GTM-KTG8N34J
 npm run build
 npm run start-server
