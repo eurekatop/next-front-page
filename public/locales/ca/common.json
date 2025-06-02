@@ -21,5 +21,22 @@
             "meta_title" : "Eurekatop – Paraules, Creativitat i Articles que Et Sorprendran",
             "meta_desc" : "Explora Eurekatop, el blog en sobre cultura digital, memòria, tecnologia, música i intel·ligència artificial"
         }
+    },
+    "footer":{
+        "contact_us": "Contacta amb nosaltres"
+    },   
+    "contact": {
+        "title": "Contacta amb mi",
+        "subtitle": "Pots escriure’m el que vulguis. Et respondré aviat.",
+        "send_button": "Enviar",
+        "sending": "Enviant...",
+        "sent_success": "✅ Missatge enviat!",
+        "sent_error": "❌ Error enviant el missatge.",
+        "form": {
+        "name": "El teu nom",
+        "email": "El teu correu",
+        "subject": "Assumpte",
+        "message": "El teu missatge"
+        }
     }
 }

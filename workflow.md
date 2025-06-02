@@ -11,3 +11,6 @@ Te xarxess:     feedly
 
 Mail a. https://mailadmin.zoho.eu/
         https://mail.zoho.eu/ 
+
+Veure com generar contingut a:
+/home/rfranr/Documents/Projectes/genracio-de-contingut/prompts

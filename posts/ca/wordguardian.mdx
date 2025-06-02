@@ -1,0 +1,85 @@
+---
+title: "El projecte WordGuardian"
+date: "2025-06-02"
+summary: "Durant el darrer mes m’he submergit en un projecte personal que volia ser joc, experiment, i potser una mica protesta: **WordGuardian**. Una web per jugar amb definicions absurdes, reals i inventades. Però també una finestra a la riquesa semàntica de Wikidata i un bany d’aigua freda sobre la realitat de crear una web indie el 2025."
+image: "/images/wordguradian-post.png" 
+categories: ["general","tecnologia", "joc", "llenguatge", "wikidata", "astro", "webindie"]
+slug: "wordguardian"
+---
+
+# El projecte   
+**Versió 1.0**  
+✍️ Assistit amb AI: Aquest article ha estat redactat amb l’ajuda de ChatGPT (OpenAI), a partir d’esbossos i idees originals de **Francesc López Marió**.
+
+Durant el darrer mes m’he submergit en un projecte personal que volia ser joc, experiment, i potser una mica protesta: **WordGuardian**.
+
+Una web per jugar amb definicions absurdes, reals i inventades. Però també una finestra a la riquesa semàntica de Wikidata i un bany d’aigua freda sobre la realitat de crear una web indie el 2025.
+
+## 🧩 Objectiu  
+Volia fer un joc on els usuaris endevinessin definicions plausibles, generades o extretes de forma automàtica.  
+
+**Però el camí no ha estat gens simple.**  
+He usat Astro i Preact per evitar el FUOC i fer-ho responsive, i he treballat amb dumps gegants de Wikidata descomprimint amb `pbzip2`, `zstd` i scripts en **Rust** paral·lels.
+
+## ⚙️ Stack i tècniques  
+
+- **Frontend**: Astro, Preact, Shoelace, Vanilla Extract  
+  > *Astro ha estat una joia inesperada.* Permet combinar components amb diferents frameworks i, sobretot, fer **renderitzat del costat del servidor (SSR)** molt eficient. Això facilita que els cercadors indexin el contingut sense problemes —una diferència clau si vols tenir opcions reals a SEO el 2025. A més, exposar una petita API del servidor (amb endpoints tipus `/api/xyz`) és directe i sense complicacions, sense haver de muntar un backend sencer.  
+- **Backend**: Node.js per scrapings, scripts paral·lels en Rust per parsejar Wikidata  
+- **Processament**: dumps de Wikidata amb p31, p279, p1629... tot un món  
+- **NLP**: generació de distractors amb Groq, heurístiques amb embeddings.
+- **Altres**: Càrrega sense *FOUC* (*Flash of Unstyled Content*), és a dir, evitar que la pàgina es vegi "lletja" durant unes mil·lèsimes de segon abans que es carreguin els estils. També he fet una optimització mínima i, com sempre, moltes línies de consola.
+
+També he utilitzat el projecte [**Wiktextract**](https://github.com/tatuylonen/wiktextract), desenvolupat per **Tatu Ylönen**, i la base de dades publicada a [**Kaikki.org**](https://kaikki.org), que ofereix els continguts de Wiktionary de forma estructurada i usable. Sense aquesta font, hauria estat molt més lent construir una base lèxica fiable per al joc.
+
+## 💡 Aprenentatges  
+
+- **Wikidata és un tresor**, però navegar-hi sense mapa és una odissea: items, propietats, lexemes, glosses, referències creuades... i consultes **SPARQL** que semblen rituals màgics.  
+- He descobert eines com:
+  - [Wikidata Toolkit](https://github.com/Wikidata-Toolkit/Wikidata-Toolkit)  
+  - [KGTK Search](https://github.com/usc-isi-i2/kgtk-search)  
+  - [Wikibase CLI](https://github.com/maxlath/wikibase-cli/tree/main)  
+  - [wikidata-filter](https://github.com/alexkreidler/wikidata-filter)  
+  - [SPARQL](https://en.wikipedia.org/wiki/SPARQL)
+- Els dumps de Wikidata venen sovint en **format JSONL** (JSON Lines): un fitxer on cada línia és un objecte JSON independent. És perfecte per processament en streaming, perquè no cal carregar-ho tot a memòria. Però quan tens 90 GB... qualsevol estratègia requereix paciència, molta.
+- **Diferència de compressió**:  
+  - `bz2` és molt comú en els dumps oficials, però *lentíssim* de descomprimir.  
+  - `zstd`, en canvi, és **molt més ràpid**, especialment amb múltiples fils. Amb `pzstd -d -p10` pots accelerar bastant la càrrega, encara que després el coll d’ampolla és el teu codi 😅
+- Generar distractors plausibles no és trivial. Fer-ho amb Groq ha estat divertit, però no sempre fiable.  
+- Generar definicions falses però creïbles no és trivial. Amb Groq o HuggingFace, millorant amb prompts, però cal filar prim.  
+- **Els dumps no són per dèbils.** I menys si pesen 90 GB.
+- També he après a encapsular petits serveis NLP amb Docker, exposant APIs locals de forma senzilla. Amb una imatge lleugera basada en `python:3.11-slim` i un `requirements.txt`, vaig poder desplegar ràpidament un servei per fer càlculs semàntics o similituds entre frases. Ideal per fer proves locals sense embolics de dependències.
+- També vaig estar explorant el projecte [**Common Crawl**](https://commoncrawl.org/) per extreure URLs de la web pública. Tot i que finalment no ho vaig integrar, vaig preparar un script per filtrar els enllaços  i construir un corpus propi. La idea era utilitzar-lo per generar preguntes o validar definicions amb contingut real, però va quedar en stand-by... per ara.
+
+
+## 📉 Monetització? Ai...
+
+Tenia la il·lusió de cobrir ni que fos el hosting amb anuncis. Però les dades són clares:
+
+- 462 visites
+- 22 usuaris actius
+- 0,00 € d’ingressos
+- Una mitjana de 7 minuts per usuari... però ningú clica
+
+> Al 2025, si no tens TikTok, una newsletter o 1 milió de pàgines vistes, la publicitat no paga ni el cafè.  
+> Fer una web no n’és prou. Has de ser showman, tenir diners, o fer màrqueting diari.
+
+## 🎯 I ara què?
+
+No el mataré.  
+**WordGuardian seguirà viu** com a projecte experimental i com a petit homenatge a les paraules i a Wikidata.  
+
+Potser evolucionarà cap a una app educativa. Potser serà la base d’un joc nou.  
+O potser quedarà com a monument al temps invertit en una idea que encara em fa somriure.
+
+També em ronda pel cap començar a **investigar com fer servir l’ontologia de Wikidata per generar preguntes alineades amb camps de coneixement**: ciència, història, cultura popular, etc.  
+Aprofitar la jerarquia de subclasses (`p279`) i instàncies (`p31`) per construir *nivells temàtics* o *quizzes per àmbits*, i fer que el joc sigui una mica menys "psicodèlic" i una mica més navegable.  
+
+
+
+👉 Prova’l: [https://eurekatop.com/wordguardian](https://eurekatop.com/wordguardian)  
+📖 Codi obert (aviat a GitHub)  
+
+Un projecte de [**mutiitu.com**](https://www.mutiitu.com)
+
+© Francesc López Marió, 2025

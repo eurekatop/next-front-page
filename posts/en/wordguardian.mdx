@@ -1,0 +1,82 @@
+---
+title: "The WordGuardian Project"
+date: "2025-06-02"
+summary: "Over the past month, I’ve immersed myself in a personal project that was meant to be a game, an experiment, and maybe a bit of a protest: **WordGuardian**. A website for playing with absurd, real, and invented definitions. But also a window into Wikidata’s semantic richness and a cold shower on the reality of building an indie web in 2025."
+image: "/images/wordguradian-post.png" 
+categories: ["general", "technology", "game", "language", "wikidata", "astro", "webindie"]
+slug: "wordguardian"
+---
+
+# The Project  
+**Version 1.0**  
+✍️ AI-assisted: This article was written with the help of ChatGPT (OpenAI), based on original sketches and ideas by **Francesc López Marió**.
+
+Over the past month, I’ve immersed myself in a personal project that was meant to be a game, an experiment, and maybe a bit of a protest: **WordGuardian**.
+
+A site for playing with absurd, real, and invented definitions. But also a window into the semantic richness of Wikidata and a cold reality check about building an indie website in 2025.
+
+## 🧩 Objective  
+I wanted to create a game where users guessed plausible definitions, either automatically generated or extracted.  
+
+**But the journey was anything but simple.**  
+I used Astro and Preact to avoid FOUC and keep it responsive, and I worked with massive Wikidata dumps, decompressed with `pbzip2`, `zstd`, and parsed using parallel **Rust** scripts.
+
+## ⚙️ Stack & Techniques  
+
+- **Frontend**: Astro, Preact, Shoelace, Vanilla Extract  
+  > *Astro turned out to be a hidden gem.* It lets you combine components from different frameworks and enables efficient **server-side rendering (SSR)**. This helps search engines index the content properly —a key difference if you care about SEO in 2025. Also, exposing a small server API (via `/api/xyz` endpoints) is simple and clean, no need for a full backend.  
+- **Backend**: Node.js for scraping; parallel Rust scripts for parsing Wikidata  
+- **Processing**: Wikidata dumps using p31, p279, p1629... a whole world of data  
+- **NLP**: distractor generation with Groq, heuristics using embeddings.
+- **Other**: Load without *FOUC* (*Flash of Unstyled Content*) —making sure the page doesn’t flash ugly before styles kick in. Minimal optimization, and as always, lots of console logs.
+
+I also relied on the [**Wiktextract**](https://github.com/tatuylonen/wiktextract) project by **Tatu Ylönen**, and the dataset from [**Kaikki.org**](https://kaikki.org), which offers Wiktionary content in a structured, usable way. Without it, building a solid lexical base would have taken much longer.
+
+## 💡 What I Learned  
+
+- **Wikidata is a treasure**, but navigating it without a map is a nightmare: items, properties, lexemes, glosses, cross-references... and **SPARQL** queries that look like arcane rituals.  
+- Tools I discovered:
+  - [Wikidata Toolkit](https://github.com/Wikidata-Toolkit/Wikidata-Toolkit)  
+  - [KGTK Search](https://github.com/usc-isi-i2/kgtk-search)  
+  - [Wikibase CLI](https://github.com/maxlath/wikibase-cli/tree/main)  
+  - [wikidata-filter](https://github.com/alexkreidler/wikidata-filter)  
+  - [SPARQL](https://en.wikipedia.org/wiki/SPARQL)
+- Wikidata dumps often come in **JSONL** (JSON Lines) format: a file where each line is a standalone JSON object. Great for streaming —you don’t need to load everything into memory. But with 90 GB... even the best strategy requires patience.
+- **Compression formats matter**:  
+  - `bz2` is common in official dumps, but *painfully* slow to decompress.  
+  - `zstd` is **much faster**, especially with multiple threads. With `pzstd -d -p10` you can speed up decompression, although your own code becomes the bottleneck 😅
+- Generating plausible distractors is not trivial. Doing it with Groq was fun but inconsistent.  
+- Making fake but believable definitions is tricky. You need precise prompting with Groq or HuggingFace.  
+- **Dumps are not for the faint of heart.** Especially when they’re 90 GB.
+- I also learned to wrap small NLP services in Docker, exposing local APIs with ease. Using a lightweight image like `python:3.11-slim` and a `requirements.txt`, I quickly deployed a service for semantic comparisons and phrase similarity. Perfect for local tests without dependency chaos.
+- I explored [**Common Crawl**](https://commoncrawl.org/) to URLs from the public web. Although I didn’t end up using it, I built a script to filter the links and create a custom corpus. The idea was to use it to generate or validate questions with real content. It’s on hold... for now.
+
+## 📉 Monetization? Yikes...
+
+I had hoped to at least cover the hosting with ads. But the numbers speak for themselves:
+
+- 462 visits  
+- 22 active users  
+- €0.00 revenue  
+- An average of 7 minutes per user... but no clicks
+
+> In 2025, if you don’t have TikTok, a newsletter, or a million page views, ads won’t even buy you coffee.  
+> Making a website isn’t enough. You have to be a showman, have money, or do daily marketing.
+
+## 🎯 So, what now?
+
+I’m not killing it.  
+**WordGuardian will live on** as an experimental project and a small tribute to words and to Wikidata.  
+
+Maybe it will evolve into an educational app. Maybe it’ll become the base for a new game.  
+Or maybe it’ll stand as a monument to the time spent on an idea that still makes me smile.
+
+I’m also toying with the idea of **exploring how to use Wikidata’s ontology to generate questions by topic** —science, history, pop culture, etc.  
+Using subclass (`p279`) and instance (`p31`) hierarchies to build *thematic levels* or *topic-based quizzes*, making the game a bit less “psychedelic” and a bit more navigable.  
+
+👉 Try it: [https://eurekatop.com/wordguardian](https://eurekatop.com/wordguardian)  
+📖 Open source (coming soon on GitHub)  
+
+A project by [**mutiitu.com**](https://www.mutiitu.com)
+
+© Francesc López Marió, 2025

@@ -1,0 +1,82 @@
+---
+title: "El proyecto WordGuardian"
+date: "2025-06-02"
+summary: "Durante el último mes me he sumergido en un proyecto personal que quería ser juego, experimento, y quizá un poco protesta: **WordGuardian**. Una web para jugar con definiciones absurdas, reales e inventadas. Pero también una ventana a la riqueza semántica de Wikidata y un baño de agua fría sobre la realidad de crear una web indie en 2025."
+image: "/images/wordguradian-post.png" 
+categories: ["general", "tecnología", "juego", "lenguaje", "wikidata", "astro", "webindie"]
+slug: "wordguardian"
+---
+
+# El proyecto  
+**Versión 1.0**  
+✍️ Asistido con IA: Este artículo ha sido redactado con la ayuda de ChatGPT (OpenAI), a partir de bocetos e ideas originales de **Francesc López Marió**.
+
+Durante el último mes me he sumergido en un proyecto personal que quería ser juego, experimento, y quizá un poco protesta: **WordGuardian**.
+
+Una web para jugar con definiciones absurdas, reales e inventadas. Pero también una ventana a la riqueza semántica de Wikidata y un baño de agua fría sobre la realidad de crear una web indie en 2025.
+
+## 🧩 Objetivo  
+Quería crear un juego en el que los usuarios adivinasen definiciones plausibles, generadas o extraídas de forma automática.  
+
+**Pero el camino no ha sido nada sencillo.**  
+He utilizado Astro y Preact para evitar el *FOUC* y hacerlo responsive, y he trabajado con gigantescos *dumps* de Wikidata descomprimiendo con `pbzip2`, `zstd` y scripts en **Rust** paralelos.
+
+## ⚙️ Stack y técnicas  
+
+- **Frontend**: Astro, Preact, Shoelace, Vanilla Extract  
+  > *Astro ha sido una joya inesperada.* Permite combinar componentes de distintos frameworks y, sobre todo, hacer **renderizado del lado del servidor (SSR)** de forma muy eficiente. Esto facilita que los buscadores indexen el contenido sin problemas —una diferencia clave si quieres tener opciones reales de SEO en 2025. Además, exponer una pequeña API del servidor (con endpoints tipo `/api/xyz`) es directo y sin complicaciones, sin tener que montar un backend completo.  
+- **Backend**: Node.js para scrapings, scripts paralelos en Rust para parsear Wikidata  
+- **Procesamiento**: *dumps* de Wikidata con p31, p279, p1629... todo un mundo  
+- **NLP**: generación de distractores con Groq, heurísticas con *embeddings*.
+- **Otros**: Carga sin *FOUC* (*Flash of Unstyled Content*), es decir, evitar que la página se vea "fea" durante unas milésimas de segundo antes de que se carguen los estilos. También hice una optimización mínima y, como siempre, muchas líneas de consola.
+
+También he utilizado el proyecto [**Wiktextract**](https://github.com/tatuylonen/wiktextract), desarrollado por **Tatu Ylönen**, y la base de datos publicada en [**Kaikki.org**](https://kaikki.org), que ofrece los contenidos de Wiktionary de forma estructurada y usable. Sin esta fuente, habría sido mucho más lento construir una base léxica fiable para el juego.
+
+## 💡 Aprendizajes  
+
+- **Wikidata es un tesoro**, pero navegar por ella sin mapa es una odisea: ítems, propiedades, lexemas, glosas, referencias cruzadas... y consultas **SPARQL** que parecen rituales mágicos.  
+- He descubierto herramientas como:
+  - [Wikidata Toolkit](https://github.com/Wikidata-Toolkit/Wikidata-Toolkit)  
+  - [KGTK Search](https://github.com/usc-isi-i2/kgtk-search)  
+  - [Wikibase CLI](https://github.com/maxlath/wikibase-cli/tree/main)  
+  - [wikidata-filter](https://github.com/alexkreidler/wikidata-filter)  
+  - [SPARQL](https://en.wikipedia.org/wiki/SPARQL)
+- Los *dumps* de Wikidata suelen venir en **formato JSONL** (JSON Lines): un fichero donde cada línea es un objeto JSON independiente. Es perfecto para procesamiento en *streaming*, porque no hace falta cargarlo todo en memoria. Pero cuando tienes 90 GB... cualquier estrategia requiere paciencia, mucha.
+- **Diferencias de compresión**:  
+  - `bz2` es muy común en los *dumps* oficiales, pero *lentísimo* de descomprimir.  
+  - `zstd`, en cambio, es **mucho más rápido**, especialmente con múltiples hilos. Con `pzstd -d -p10` puedes acelerar bastante la carga, aunque después el cuello de botella es tu propio código 😅
+- Generar distractores plausibles no es trivial. Hacerlo con Groq ha sido divertido, pero no siempre fiable.  
+- Generar definiciones falsas pero creíbles no es nada fácil. Con Groq o HuggingFace, afinando los *prompts*, pero hay que hilar muy fino.  
+- **Los dumps no son para débiles.** Y menos si pesan 90 GB.
+- También aprendí a encapsular pequeños servicios NLP con Docker, exponiendo APIs locales de forma sencilla. Con una imagen ligera basada en `python:3.11-slim` y un `requirements.txt`, pude desplegar rápidamente un servicio para hacer cálculos semánticos o similitudes entre frases. Ideal para hacer pruebas locales sin líos de dependencias.
+- También estuve explorando el proyecto [**Common Crawl**](https://commoncrawl.org/) para extraer URLs de la web pública. Aunque finalmente no lo integré, preparé un script para filtrar los enlaces y construir un corpus propio. La idea era utilizarlo para generar preguntas o validar definiciones con contenido real, pero quedó en *stand-by*... por ahora.
+
+## 📉 ¿Monetización? Ay...
+
+Tenía la ilusión de cubrir aunque fuera el *hosting* con anuncios. Pero los datos son claros:
+
+- 462 visitas
+- 22 usuarios activos
+- 0,00 € de ingresos
+- Una media de 7 minutos por usuario... pero nadie clica
+
+> En 2025, si no tienes TikTok, una newsletter o 1 millón de páginas vistas, la publicidad no paga ni el café.  
+> Hacer una web no es suficiente. Tienes que ser *showman*, tener dinero, o hacer *marketing* diario.
+
+## 🎯 ¿Y ahora qué?
+
+No lo voy a matar.  
+**WordGuardian seguirá vivo** como proyecto experimental y como pequeño homenaje a las palabras y a Wikidata.  
+
+Quizá evolucione hacia una app educativa. Quizá sea la base de un juego nuevo.  
+O quizá quede como monumento al tiempo invertido en una idea que aún me hace sonreír.
+
+También me ronda por la cabeza empezar a **investigar cómo usar la ontología de Wikidata para generar preguntas alineadas con campos de conocimiento**: ciencia, historia, cultura popular, etc.  
+Aprovechar la jerarquía de subclases (`p279`) e instancias (`p31`) para construir *niveles temáticos* o *quizzes por ámbitos*, y hacer que el juego sea un poco menos "psicodélico" y un poco más navegable.  
+
+👉 Pruébalo: [https://eurekatop.com/wordguardian](https://eurekatop.com/wordguardian)  
+📖 Código abierto (pronto en GitHub)  
+
+Un proyecto de [**mutiitu.com**](https://www.mutiitu.com)
+
+© Francesc López Marió, 2025

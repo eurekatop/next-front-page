@@ -105,6 +105,9 @@ export default function Layout({ children }: { children: ReactNode }) {
         <div className="footer-content">
           © Eurekatop {new Date().getFullYear()} — Creat amb 💻 i cafeïna ☕
         </div>
+         <div className="footer-content">
+          <a href={`${i18n.language}/contact`}>{t("footer.contact_us")}</a>
+        </div>
       </footer>
     </>
   );

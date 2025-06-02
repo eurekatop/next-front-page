@@ -21,7 +21,8 @@
     "next-mdx-remote": "^5.0.0",
     "react": "latest",
     "react-dom": "latest",
-    "react-i18next": "^15.5.1"
+    "react-i18next": "^15.5.1",
+    "resend": "^4.5.1"
   },
   "devDependencies": {
     "@mdx-js/loader": "^2.3.0",
