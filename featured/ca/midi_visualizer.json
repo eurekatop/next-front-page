@@ -1,0 +1,6 @@
+{
+  "title": "🎼 MIDI Visualizer",
+  "description": "Un experiment visual que reprodueix fitxers MIDI i els mostra amb gràfics 3D sincronitzats amb Three.js i Tone.js.",
+  "href": "/mutiitu/articles/6",
+  "image": "/images/midi-visualizer.png"
+}

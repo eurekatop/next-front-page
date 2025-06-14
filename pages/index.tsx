@@ -3,9 +3,10 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { getPostSlugs, getPostBySlug } from "../lib/posts";
 import { useTranslation } from "next-i18next";
 import FeaturedProjects from "../components/FeaturedProjects";
+import { getFeaturedItems } from "../lib/featured";
 
 
-export default function Home({ posts }) {
+export default function Home({ posts, featured }) {
   const { t, i18n } = useTranslation("common");
 
   return (
@@ -16,7 +17,7 @@ export default function Home({ posts }) {
           {t("page.index.welcome")}
       </p>
 
-      <FeaturedProjects />
+      <FeaturedProjects featured={featured} />
 
 
       <h2>{t("last_posts")}</h2>
@@ -71,8 +72,6 @@ export default function Home({ posts }) {
 
 export async function getServerSideProps({ locale }) {
   const slugs = getPostSlugs(locale);
-  console.debug("Slugs:", slugs);
-  console.debug("Locale:", locale);
   const posts = slugs
     .map((slug) => getPostBySlug(slug, locale))
     .sort(
@@ -81,10 +80,13 @@ export async function getServerSideProps({ locale }) {
         new Date(a.frontmatter.date).getTime()
     );
 
+  const featured = getFeaturedItems(locale);
+
   return {
     props: {
       posts,
-      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+      featured,
+      ...(await serverSideTranslations(locale ?? 'en', ['common']))
     },
   };
 }
