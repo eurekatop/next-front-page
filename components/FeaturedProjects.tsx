@@ -1,6 +1,7 @@
 import { FeaturedItem } from '../lib/featured';
 import styles from './FeaturedProjects.module.css';
 
+
 export default function FeaturedProjects({ featured }: { featured: FeaturedItem[] }) {
   return (
     <section className={styles.featured_projects}>

@@ -1,17 +1,4 @@
-:root {
-    --bg: #fff;
-    --text: #000;
-    --footer-bg: #eee;
-    --font-main: 'VT323', monospace;
-    --font-variant: 'Rubik', sans-serif;
-  }
-  
-  .dark {
-    --bg: #111;
-    --text: #eee;
-    --footer-bg: #222;
-  }
-  
+
   body {
     background-color: var(--bg);
     color: var(--text);

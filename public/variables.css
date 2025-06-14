@@ -1,0 +1,22 @@
+:root {
+  --bg: #fff;
+  --text: #000;
+  --footer-bg: #eee;
+  --font-main: 'VT323', monospace;
+  --font-variant: 'Rubik', sans-serif;
+  --card-bg: rgba(220, 220, 220, 0.01);
+  --card-text: #003333;
+  --scanline-primary: rgba(102, 255, 204, 0.08);
+  --scanline-secondary: rgba(186, 188, 211, 0.927);
+}
+
+.dark {
+  --bg: #111;
+  --text: #eee;
+  --footer-bg: #222;
+  --card-bg: rgba(0, 0, 0, 0.1);
+  --card-text: #66ffcc;
+  --scanline-primary: rgba(102, 255, 204, 0.08);
+  --scanline-secondary: rgba(38, 36, 34, 0.927);
+}
+
