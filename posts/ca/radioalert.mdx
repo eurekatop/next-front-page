@@ -1,0 +1,97 @@
+---
+title: "Transcripció en directe d'una emissora de ràdio amb Whisper en mode Vibe Coding"
+date: "2025-06-09"
+summary: "Petit experiment que captura i transcriu en temps real un stream de ràdio amb Whisper, i en mostra les paraules clau en una web estil retro."
+image: "/images/radio-alert.png"
+categories: ["experiments", "codificacio-creativa", "transcripcio", "vibecoding", "ia"]
+slug: "radio-alert"
+---
+
+
+# El projecte
+
+Aquest projecte és un petit experiment per capturar i transcriure en temps real un stream d’àudio d’una emissora de ràdio (RAC1) i mostrar-ne els fragments més rellevants mitjançant una interfície web minimalista. Tot plegat, automatitzat amb Docker.
+
+És també una prova personal de *vibe coding*, feta amb un objectiu clar però sense planificació prèvia, simplement deixant-se portar per la intuïció i fins a qui punt pot accelerar el desenvolupament. Tot i que el projecte funciona, reconec que amb aquest procés s’hi perd part del plaer d’un coneixement estructurat i d’una planificació que faria la solució més robusta i escalable.
+
+Amb aquesta manera de programar, ràpida i improvisada, es tendeixen a obviar certes abstraccions i estructures que sovint són les que obren la porta a la creativitat més profunda: aquella que emergeix quan les eines no només funcionen, sinó que s'entenen perquè funcionen.
+
+
+## Accedeix a la demo
+
+👉 Prova’l: [https://eurekatop.com/radioalert](https://eurekatop.com/radioalert)  
+👉 Endpoint SSE: [https://eurekatop.com/radioalert/events](https://eurekatop.com/radioalert/events)
+
+
+<img
+  src="/images/radio-alert-content-1.png"
+  alt="Descripció de la imatge"
+  style={{ alignSelf: 'center', width: '80%', maxWidth: '80%', height: 'auto', borderRadius: '12px' }}
+/>
+
+
+## Backend: Transcripció Automàtica amb Whisper
+
+La base del projecte és un script en Python que escolta el stream com si fos un navegador. En un primer intent he provat d'utilitzar `ffmpeg` per capturar el stream, però ha fallat perquè l'emissora té proteccions antibot i la connexió no va ser acceptada. 
+
+Com alternativa he trobat que utilitzant `httpx.stream()` es pot llegir el flux d'àudio sense problemes. Sempre que la petició sembli que és la d'un navegador real. Per això cal afegir alguns headers...
+
+El script s'ha separat en dos parts: una per la captura del stream i una altra per la transcripció i filtratge de paraules clau. Aquesta transcripció es fa en paral·lel amb la captura del stream, perquè no cal esperar a que acabi la transcripció per poder seguir capturant.
+
+L’àudio llavors es processa per blocs de 4 segons i es transcriu usant el model *Whisper* optimitzat (`int8`).
+
+```python
+model = WhisperModel("/models/whisper-small", compute_type="int8")
+segments, _ = model.transcribe(BytesIO(audio_data), language="ca")
+```
+
+Un cop transcrit, es busca si apareixen paraules clau com “barça”, “avui” o “lamine yamal”, i si és el cas, es genera una alerta i s'escriu tot a un fitxer `.log`. Per exemple:
+
+🕒 [2025-06-09 14:10:23] 🗣️ [12] avui a catalunya hem vist que...  
+🚨 🕒 [2025-06-09 14:10:23] ALERTA: Paraula clau detectada: avui
+
+El sistema afegeix una petita cua de l’àudio anterior per evitar talls entre frases perquè el model necessita context per entendre bé les primeres paraules del stream. 
+
+Tot plegat, automatitzat amb Docker.
+
+## Frontend: Visualització en Directe
+
+Un petit servidor en Node.js mostra les línies transcrites en directe des d’un fitxer `.log`, enviant-les via Server-Sent Events a la interfície web tipus “consola de terminal”.
+
+```js
+fs.readFile(FILE_PATH, 'utf8', (err, data) => {
+  const lines = data.trim().split('\n').slice(-30)
+  lines.forEach(line => res.write(`data: ${line}\n\n`))
+})
+```
+Al client, la connexió es manté oberta amb EventSource() del navegador, que rep automàticament les actualitzacions en temps real:
+
+```js
+const eventSource = new EventSource('/events')
+eventSource.onmessage = function(event) {
+  console.log(event.data)
+}
+```
+
+---
+
+## 💡 Aprenentatges
+
+- Whisper és força fiable, fins i tot en català.
+- Afegir una cua d’àudio anterior millora la precisió en frases tallades.
+- Amb `httpx.stream` i fils lleugers es pot capturar àudio de manera estable sense saturar el procés principal. En un primer intent s’havia provat d’utilitzar `ffmpeg`, però s’ha descartat perquè la idea era evitar les proteccions antibot de l’emissora simulant una connexió de navegador real.
+- Server-Sent Events és una eina molt simple però efectiva per enviar dades en viu a una web.
+
+## Stack i tècniques
+
+- 🐍 Python + [faster-whisper](https://github.com/guillaumekln/faster-whisper)
+- 📡 httpx per capturar streams d’àudio
+- 🎛️ Transcripció en català amb el model Whisper-small optimitzat
+- 🐳 Docker per encapsular el servei
+- 🟩 Node.js + Express per exposar el fitxer com a feed SSE
+- 🎨 HTML + CSS en mode consola de terminal
+
+---
+
+Un experiment en vibe coding per Francesc López Marió, 2025
+
