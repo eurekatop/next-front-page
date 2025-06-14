@@ -1,4 +1,5 @@
 /* START --------- Featured Content --------- */
+
 @keyframes crt_scan {
   0% {
     background-position: 0 0;
@@ -23,7 +24,8 @@
   overflow: hidden;
   border-radius: 6px;
   text-decoration: none;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--card-bg);
+  color: var(--card-text);
   background-size: 40px 30px;
   background-repeat: no-repeat;
   border: 2px solid #66ffcc;
@@ -46,8 +48,8 @@
   height: 200%;
   background: repeating-linear-gradient(
     to bottom,
-    rgba(102, 255, 204, 0.08),
-    rgba(38, 36, 34, 0.927) 2px,
+    var(--scanline-primary),
+    var(--scanline-secondary) 2px,
     transparent 2px,
     transparent 4px
   );
@@ -61,6 +63,7 @@
   position: relative;
   z-index: 1;
   padding: 1.5rem;
+  color: var(--card-text);
 }
 
 /* Mobile */
