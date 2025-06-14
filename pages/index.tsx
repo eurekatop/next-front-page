@@ -2,16 +2,22 @@ import Link from "next/link";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { getPostSlugs, getPostBySlug } from "../lib/posts";
 import { useTranslation } from "next-i18next";
+import FeaturedProjects from "../components/FeaturedProjects";
+
 
 export default function Home({ posts }) {
   const { t, i18n } = useTranslation("common");
 
   return (
+    <>
     <div className="container">
       <h1>{t("welcome")}</h1>
       <p>
           {t("page.index.welcome")}
       </p>
+
+      <FeaturedProjects />
+
 
       <h2>{t("last_posts")}</h2>
       <ul style={{ listStyle: "none", paddingLeft: 0 }}>
@@ -57,6 +63,9 @@ export default function Home({ posts }) {
           href="/blog">{t("see_all_posts")}</Link>
       </p>
     </div>
+
+    </>
+
   );
 }
 

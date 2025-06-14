@@ -50,62 +50,39 @@ export default function Layout({ children }: { children: ReactNode }) {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
         <link rel="manifest" href="/favicon_io/site.webmanifest"></link>
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet"></link>
+
       </Head>
       
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} gaId={process.env.NEXT_PUBLIC_GA_ID} />
+<header className="header">
+  <nav className="nav">
+    <Link rel="alternate" hrefLang="x-default" href="/" className="nav-link">
+      {t("topNav.home")}
+    </Link>
+    <Link rel="alternate" hrefLang="x-default" href="/blog" className="nav-link">
+      {t("topNav.blog")}
+    </Link>
+    <Link rel="alternate" hrefLang="x-default" href="/blog/categories" className="nav-link">
+      {t("topNav.categories")}
+    </Link>
+    <Link rel="alternate" hrefLang="ca" href="/mutiitu" className="nav-link">
+      {t("topNav.old_blog")}
+    </Link>
+  </nav>
 
-      <header className="header">
-        <nav className="nav">
-          <Link 
-            rel="alternate"
-            hrefLang="x-default"
-            href="/" className="nav-link">
-            {t("topNav.home")}
-          </Link>
-          <Link 
-            rel="alternate"
-            hrefLang="x-default"
-            href="/blog" className="nav-link">
-            {t("topNav.blog")}
-          </Link>
-          <Link 
-            rel="alternate"
-            hrefLang="x-default"
-            href="/blog/categories" className="nav-link">
-            {t("topNav.categories")}
-          </Link>
-          <Link 
-            rel="alternate"
-            hrefLang="ca"
-            href="/mutiitu" className="nav-link">
-            {t("topNav.old_blog")}
-          </Link>
-        </nav>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginTop: "1rem",
-          }}
-        >
-          <LanguageSwitcher />
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            style={{
-              background: "none",
-              border: "1px solid currentColor",
-              padding: "0.5rem 1rem",
-              borderRadius: "6px",
-              cursor: "pointer",
-              color: "inherit",
-              marginLeft: "1rem",
-            }}
-          >
-            {darkMode ? t("light_mode") : t("dark_mode")}  
-          </button>
-        </div>
-      </header>
+  {/* Bloc de la dreta */}
+  <div className="header-controls">
+    <LanguageSwitcher />
+    <button
+      onClick={() => setDarkMode(!darkMode)}
+      className="mode-toggle"
+    >
+      {darkMode ? t("light_mode") : t("dark_mode")}
+    </button>
+  </div>
+</header>
 
       <main className="container">{children}</main>
 

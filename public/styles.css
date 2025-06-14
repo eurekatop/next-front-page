@@ -1,13 +1,4 @@
 /* -------- Cos base -------- */
-body {
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  line-height: 1.6;
-  background: #f5f7fa;
-  color: #222;
-  margin: 0;
-  padding: 0;
-}
-
 .dark body {
   background: #111827;
   color: #e5e7eb;
@@ -20,6 +11,7 @@ body {
   padding: 2rem;
   background: #fff;
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  font-family: var(--font-variant), system-ui, sans-serif;
 }
 
 .dark .container {

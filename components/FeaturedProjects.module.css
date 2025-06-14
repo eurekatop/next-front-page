@@ -1,0 +1,72 @@
+/* START --------- Featured Content --------- */
+@keyframes crt_scan {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.featured_projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.featured_card {
+  position: relative;
+  flex: 1 1 300px;
+  max-width: 450px;
+  overflow: hidden;
+  border-radius: 6px;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-size: 40px 30px;
+  background-repeat: no-repeat;
+  border: 2px solid #66ffcc;
+  color: #66ffcc;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 0 8px #66ffcc;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.featured_card:hover {
+  transform: translate(-10px, -5px) scale(1.05);
+  box-shadow: 0 0 16px #66ffcc;
+}
+
+.card_bg_pixel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(102, 255, 204, 0.08),
+    rgba(38, 36, 34, 0.927) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  animation: crt_scan 3s linear infinite;
+  opacity: 0.4;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.card_content {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .featured_card {
+    flex: 1 1 100%;
+  }
+}
+/* END --------- Featured Content --------- */

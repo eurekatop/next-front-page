@@ -5,7 +5,7 @@ const LanguageSwitcher = () => {
   const { locale, locales, asPath } = useRouter()
 
   return (
-    <span style={{ marginLeft: 'auto' }}>
+    <span>
       🌐
       {locales?.map((lng) => (
         <Link
