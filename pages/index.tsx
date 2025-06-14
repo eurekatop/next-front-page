@@ -18,7 +18,10 @@ export default function Home({ posts }) {
         {posts.slice(0, 5).map((post) => (
           <li className="card" key={post.slug}>
             {post.frontmatter.image && (
-              <Link href={`/blog/${post.slug}`}>
+              <Link 
+                rel="alternate"
+                hrefLang={`${i18n.language}`}
+                href={`/blog/${post.slug}`}>
                 <img
                   src={post.frontmatter.image}
                   alt={post.frontmatter.title}
@@ -26,7 +29,10 @@ export default function Home({ posts }) {
               </Link>
             )}
             <div className="card-content">
-              <Link href={`/blog/${post.slug}`}>
+              <Link 
+                rel="alternate"
+                hrefLang={`${i18n.language}`}
+                href={`/blog/${post.slug}`}>
                 <h3>{post.frontmatter.title}</h3>
               </Link>
               <p
@@ -45,7 +51,10 @@ export default function Home({ posts }) {
       </ul>
 
       <p style={{ marginTop: "2rem" }}>
-        <Link href="/blog">{t("see_all_posts")}</Link>
+        <Link 
+          rel="alternate"
+          hrefLang={`${i18n.language}`}
+          href="/blog">{t("see_all_posts")}</Link>
       </p>
     </div>
   );

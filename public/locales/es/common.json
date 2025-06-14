@@ -7,13 +7,14 @@
     "no_posts": "No hay artículos disponibles.",
     "categories": "categorías",
     "last_posts" : "Últimos artículos",
-    "see_all_posts" : "See all posts",
+    "see_all_posts" : "Ver todos",
     "light_mode": "☀️ Modo claro",
     "dark_mode": "🌙 Modo oscuro",
     "topNav": {
         "home": "Inicio",
         "blog": "BLog",
-        "categories": "Categorías"
+        "categories": "Categorías",
+        "old_blog": "Blog anterior"
     },
     "page" : {
         "index" : {

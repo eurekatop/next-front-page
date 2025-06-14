@@ -5,7 +5,7 @@ import { getPostBySlug, getPostSlugs } from '../../lib/posts'
 
 
 export default function CategoriesPage({ categories }: { categories: string[] }) {
-  const { t } = useTranslation('common')
+  const { t, i18n } = useTranslation('common')
 
   return (
     <div>
@@ -13,7 +13,10 @@ export default function CategoriesPage({ categories }: { categories: string[] })
       <ul>
         {categories.map((cat) => (
           <li key={cat}>
-            <Link href={`/category/${cat}`}>{cat}</Link>
+            <Link 
+              rel="alternate"
+              hrefLang={`${i18n.language}`}
+              href={`/${i18n.language}/category/${cat}`}>{cat}</Link>
           </li>
         ))}
       </ul>

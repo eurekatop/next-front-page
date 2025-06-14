@@ -13,7 +13,8 @@
     "topNav": {
         "home": "Inici",
         "blog": "BLog",
-        "categories": "Categories"
+        "categories": "Categories",
+        "old_blog": "Blog Antic"
     },
     "page" : {
         "index" : {

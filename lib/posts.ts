@@ -37,6 +37,9 @@ export function getPostSlugs(locale: string): string[] {
     throw new Error('Locale is not set')
   }
   const dir = path.join(BASE_DIR, 'posts', locale)
+  
+  console.debug(`Getting post slugs for locale ${locale} at directory ${dir}`);
+
   if (!fs.existsSync(dir)) return []
 
   return fs.readdirSync(dir)
@@ -99,6 +102,7 @@ export function getPostBySlug(slug: string, locale: string) {
   return {
     slug: data.slug,
     frontmatter: data as Frontmatter,
-    content
+    content,
+    locale
   }
 }

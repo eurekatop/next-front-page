@@ -56,14 +56,29 @@ export default function Layout({ children }: { children: ReactNode }) {
 
       <header className="header">
         <nav className="nav">
-          <Link href="/" className="nav-link">
+          <Link 
+            rel="alternate"
+            hrefLang="x-default"
+            href="/" className="nav-link">
             {t("topNav.home")}
           </Link>
-          <Link href="/blog" className="nav-link">
+          <Link 
+            rel="alternate"
+            hrefLang="x-default"
+            href="/blog" className="nav-link">
             {t("topNav.blog")}
           </Link>
-          <Link href="/blog/categories" className="nav-link">
+          <Link 
+            rel="alternate"
+            hrefLang="x-default"
+            href="/blog/categories" className="nav-link">
             {t("topNav.categories")}
+          </Link>
+          <Link 
+            rel="alternate"
+            hrefLang="ca"
+            href="/mutiitu" className="nav-link">
+            {t("topNav.old_blog")}
           </Link>
         </nav>
         <div
@@ -106,7 +121,10 @@ export default function Layout({ children }: { children: ReactNode }) {
           © Eurekatop {new Date().getFullYear()} — Creat amb 💻 i cafeïna ☕
         </div>
          <div className="footer-content">
-          <a href={`/${i18n.language}/contact`}>{t("footer.contact_us")}</a>
+          <a
+            rel="alternate"
+            hrefLang={`${i18n.language}`} 
+            href={`/${i18n.language}/contact`}>{t("footer.contact_us")}</a>
         </div>
       </footer>
     </>

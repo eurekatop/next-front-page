@@ -5,7 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { GetServerSideProps } from 'next'
 
 export default function CategoryPage({ category, posts }) {
-  const { t } = useTranslation('common')
+  const { t, i18n } = useTranslation('common')
 
   return (
     <div>
@@ -13,18 +13,14 @@ export default function CategoryPage({ category, posts }) {
       <ul>
         {posts.map((post) => (
           <li key={post.slug}>
-            <Link href={`/blog/${post.slug}`}>{post.frontmatter.title}</Link>
+            <Link 
+              rel="alternate" 
+              hrefLang={i18n.language}
+              href={`/${i18n.language}/blog/${post.slug}`}
+              locale="ca">{post.frontmatter.title}</Link>
           </li>
         ))}
       </ul>
-      <div style={{ marginTop: '2rem' }}>
-        🌐 <b>{t('change_language')}:</b>
-        <ul>
-          <li><Link href={`/category/${category}`} locale="ca">Català</Link></li>
-          <li><Link href={`/category/${category}`} locale="es">Castellano</Link></li>
-          <li><Link href={`/category/${category}`} locale="en">English</Link></li>
-        </ul>
-      </div>
     </div>
   )
 }

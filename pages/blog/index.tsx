@@ -15,9 +15,15 @@ export default function BlogIndex({ posts }) {
         <ul>
           {posts.map((post) => (
             <li key={post.slug}>
-              <Link href={`/blog/${post.slug}`}>
+              <Link 
+                rel='alternate'
+                hrefLang={post.locale}
+                href={`/blog/${post.slug}`}>
                 {post.frontmatter.title}
               </Link>
+              <div>
+                {new Date(post.frontmatter.date).toLocaleDateString()}
+              </div>
             </li>
           ))}
         </ul>
@@ -30,9 +36,15 @@ export async function getServerSideProps({ locale }) {
   const slugs = getPostSlugs(locale)
   const posts = slugs.map((slug) => getPostBySlug(slug, locale))
 
+  const orderedPosts = posts.sort(
+    (a, b) =>
+      new Date(b.frontmatter.date).getTime() -
+      new Date(a.frontmatter.date).getTime(),
+  )
+
   return {
     props: {
-      posts,
+      posts:orderedPosts,
       ...(await serverSideTranslations(locale, ['common']))
     }
   }
