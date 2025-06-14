@@ -1,6 +1,6 @@
 {
   "title": "🎼 MIDI Visualizer",
   "description": "Un experimento visual que reproduce archivos MIDI y los muestra con gráficos 3D sincronizados usando Three.js y Tone.js.",
-  "href": "/mutiitu/articles/6",
+  "href": "https://fresh-skate.surge.sh",
   "image": "/images/midi-visualizer.png"
 }
