@@ -20,7 +20,7 @@ RUN npm install --production
 # Copia el codi font
 #COPY . .
 
-COPY posts/ ./posts/
+COPY content/ ./content/
 COPY pages/ ./pages/
 COPY components/ ./components/
 COPY lib/ ./lib/
