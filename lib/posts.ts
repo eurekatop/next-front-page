@@ -102,6 +102,7 @@ export function getPostBySlug(slug: string, locale: string) {
   return {
     slug: data.slug,
     frontmatter: data as Frontmatter,
+    postDate: new Date(data.date).toLocaleDateString(),
     content,
     locale
   }

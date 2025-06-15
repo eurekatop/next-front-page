@@ -53,7 +53,7 @@ export default function Home({ posts, featured, groupedItems }) {
                       margin: "0.25rem 0",
                     }}
                   >
-                    {new Date(post.frontmatter.date).toLocaleDateString()}
+                    {post.postDate}
                   </p>
                   <p>{post.frontmatter.summary}</p>
                 </div>
@@ -88,8 +88,6 @@ export async function getServerSideProps({ locale }) {
 
   const featured = getFeaturedItems(locale);
   const groupedItems = getGroupedExplorationItems(locale);
-  console.log("********************************+");
-  console.log(groupedItems);
 
   return {
     props: {
