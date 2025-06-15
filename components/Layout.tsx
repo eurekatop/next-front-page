@@ -71,6 +71,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <Link rel="canonical" href={`https://eurekatop.com/mutiitu`} className="nav-link">
       {t("topNav.old_blog")}
     </Link>
+    <Link rel="canonical" href={`https://mutiitu.com`} className="nav-link">Mutiitu</Link>
   </nav>
 
   {/* Bloc de la dreta */}
