@@ -88,6 +88,13 @@ html.dark .container {
     display: none;
   }
 
+  .main-column {
+    flex: unset;
+    max-width: 800;
+    align-self: unset;
+  }
+
+
 
 }
 

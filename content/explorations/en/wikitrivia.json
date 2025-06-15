@@ -1,0 +1,155 @@
+[
+  {
+    "title": "WikiTrivia",
+    "description": "Arrange historical events on a timeline. Based on Wikidata.",
+    "url": "https://wikitrivia.tomjwatson.com/",
+    "icon": "📜",
+    "tags": ["history", "timeline", "wikidata"],
+    "category": "Interactive Education",
+    "group": "Knowledge Games",
+    "author": "Tom J. Watson",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Neal.fun – Absurd Trolley Problems",
+    "description": "Solve moral dilemmas with humor.",
+    "url": "https://neal.fun/absurd-trolley-problems/",
+    "icon": "🚃",
+    "tags": ["ethics", "game", "humor"],
+    "category": "Interactive Education",
+    "group": "Knowledge Games",
+    "author": "Neal Agarwal",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "The True Size Of...",
+    "description": "Explore how projections distort the real size of countries.",
+    "url": "https://thetruesize.com/",
+    "icon": "🌍",
+    "tags": ["geography", "maps", "education"],
+    "category": "Geographic Visualization",
+    "group": "Educational Visualizations",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "River Runner",
+    "description": "Follow a drop of water's path to the ocean.",
+    "url": "https://river-runner-global.samlearner.com/",
+    "icon": "💧",
+    "tags": ["geography", "rivers", "3D"],
+    "category": "Geographic Visualization",
+    "group": "Educational Visualizations",
+    "author": "Sam Learner",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "ChronoPhoto",
+    "description": "Guess the year of a historical photo.",
+    "url": "https://www.chronophoto.app/",
+    "icon": "📸",
+    "tags": ["history", "game", "photo"],
+    "category": "Interactive Education",
+    "group": "Knowledge Games",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "WhenTaken",
+    "description": "Guess the year of a photo by analyzing its details.",
+    "url": "https://whentaken.com/",
+    "icon": "🕰️",
+    "tags": ["history", "guess", "photo"],
+    "category": "Interactive Education",
+    "group": "Knowledge Games",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Whichyr",
+    "description": "Guess the year in which events, video games or movies were released.",
+    "url": "https://whichyr.com/",
+    "icon": "📅",
+    "tags": ["trivia", "history", "timeline"],
+    "category": "Interactive Education",
+    "group": "Knowledge Games",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Framed",
+    "description": "Guess the movie from still frames. A film lover's Wordle.",
+    "url": "https://framed.wtf/",
+    "icon": "🎬",
+    "tags": ["film", "game", "visual"],
+    "category": "Interactive Education",
+    "group": "Wordle-inspired Games",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Gaps",
+    "description": "Fill in the blanks of a sentence. A minimalist language game.",
+    "url": "https://gaps.wtf/",
+    "icon": "🔤",
+    "tags": ["language", "game", "wordle"],
+    "category": "Interactive Education",
+    "group": "Wordle-inspired Games",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Sutom",
+    "description": "French version of Wordle with given starting letters.",
+    "url": "https://sutom.nocle.fr/",
+    "icon": "🇫🇷",
+    "tags": ["language", "game", "french"],
+    "category": "Interactive Education",
+    "group": "Wordle-inspired Games",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Globle",
+    "description": "Guess a country in the world. You're told which ones are near.",
+    "url": "https://globle.org/",
+    "icon": "🗺️",
+    "tags": ["geography", "game", "world"],
+    "category": "Interactive Education",
+    "group": "Wordle-inspired Games",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Worldle",
+    "description": "Guess the country based on its silhouette with distance-based hints.",
+    "url": "https://worldlegame.io/",
+    "icon": "🌍",
+    "tags": ["geography", "game", "silhouette"],
+    "category": "Interactive Education",
+    "group": "Wordle-inspired Games",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Flagle",
+    "description": "Guess the country's flag in as few hints as possible.",
+    "url": "https://flagle.gg/",
+    "icon": "🚩",
+    "tags": ["geography", "flags", "game"],
+    "category": "Interactive Education",
+    "group": "Wordle-inspired Games",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Phrazle",
+    "description": "Guess complete phrases using word and position clues.",
+    "url": "https://phrazle.gg/",
+    "icon": "💬",
+    "tags": ["language", "phrases", "game"],
+    "category": "Interactive Education",
+    "group": "Wordle-inspired Games",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Numberle",
+    "description": "A Wordle-style game for math operations. Find the correct equation.",
+    "url": "https://numberle.org/",
+    "icon": "➗",
+    "tags": ["math", "logic", "game"],
+    "category": "Interactive Education",
+    "group": "Wordle-inspired Games",
+    "created": "2025-06-15"
+  }
+]

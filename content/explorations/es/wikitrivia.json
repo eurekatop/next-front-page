@@ -1,0 +1,155 @@
+[
+  {
+    "title": "WikiTrivia",
+    "description": "Ordena hechos históricos en una línea temporal. Basado en datos de Wikidata.",
+    "url": "https://wikitrivia.tomjwatson.com/",
+    "icon": "📜",
+    "tags": ["historia", "línea de tiempo", "wikidata"],
+    "category": "Educación interactiva",
+    "group": "Juegos de conocimiento",
+    "author": "Tom J. Watson",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Neal.fun – Absurd Trolley Problems",
+    "description": "Resuelve dilemas morales con humor.",
+    "url": "https://neal.fun/absurd-trolley-problems/",
+    "icon": "🚃",
+    "tags": ["ética", "juego", "humor"],
+    "category": "Educación interactiva",
+    "group": "Juegos de conocimiento",
+    "author": "Neal Agarwal",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "The True Size Of...",
+    "description": "Explora cómo las proyecciones distorsionan el tamaño real de los países.",
+    "url": "https://thetruesize.com/",
+    "icon": "🌍",
+    "tags": ["geografía", "mapas", "educación"],
+    "category": "Visualización geográfica",
+    "group": "Visualizaciones educativas",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "River Runner",
+    "description": "Sigue el recorrido de una gota de agua hasta el mar.",
+    "url": "https://river-runner-global.samlearner.com/",
+    "icon": "💧",
+    "tags": ["geografía", "ríos", "3D"],
+    "category": "Visualización geográfica",
+    "group": "Visualizaciones educativas",
+    "author": "Sam Learner",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "ChronoPhoto",
+    "description": "Adivina el año de una fotografía histórica.",
+    "url": "https://www.chronophoto.app/",
+    "icon": "📸",
+    "tags": ["historia", "juego", "foto"],
+    "category": "Educación interactiva",
+    "group": "Juegos de conocimiento",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "WhenTaken",
+    "description": "Adivina el año de una foto analizando sus detalles.",
+    "url": "https://whentaken.com/",
+    "icon": "🕰️",
+    "tags": ["historia", "adivinanza", "foto"],
+    "category": "Educación interactiva",
+    "group": "Juegos de conocimiento",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Whichyr",
+    "description": "Adivina en qué año ocurrieron eventos, salieron videojuegos o películas.",
+    "url": "https://whichyr.com/",
+    "icon": "📅",
+    "tags": ["trivia", "historia", "línea de tiempo"],
+    "category": "Educación interactiva",
+    "group": "Juegos de conocimiento",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Framed",
+    "description": "Adivina la película a partir de fotogramas. Una versión cinéfila de Wordle.",
+    "url": "https://framed.wtf/",
+    "icon": "🎬",
+    "tags": ["cine", "juego", "visual"],
+    "category": "Educación interactiva",
+    "group": "Juegos derivados de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Gaps",
+    "description": "Rellena los huecos de una frase. Juego lingüístico con formato minimalista.",
+    "url": "https://gaps.wtf/",
+    "icon": "🔤",
+    "tags": ["lenguaje", "juego", "wordle"],
+    "category": "Educación interactiva",
+    "group": "Juegos derivados de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Sutom",
+    "description": "Versión francesa de Wordle con letras iniciales dadas.",
+    "url": "https://sutom.nocle.fr/",
+    "icon": "🇫🇷",
+    "tags": ["idioma", "juego", "francés"],
+    "category": "Educación interactiva",
+    "group": "Juegos derivados de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Globle",
+    "description": "Adivina un país del mundo. Te indica qué tan cerca estás.",
+    "url": "https://globle.org/",
+    "icon": "🗺️",
+    "tags": ["geografía", "juego", "mundo"],
+    "category": "Educación interactiva",
+    "group": "Juegos derivados de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Worldle",
+    "description": "Adivina el país a partir de su silueta y recibe pistas basadas en la distancia.",
+    "url": "https://worldlegame.io/",
+    "icon": "🌍",
+    "tags": ["geografía", "juego", "silueta"],
+    "category": "Educación interactiva",
+    "group": "Juegos derivados de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Flagle",
+    "description": "Adivina la bandera del país en el menor número de pistas posibles.",
+    "url": "https://flagle.gg/",
+    "icon": "🚩",
+    "tags": ["geografía", "banderas", "juego"],
+    "category": "Educación interactiva",
+    "group": "Juegos derivados de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Phrazle",
+    "description": "Adivina frases completas a partir de palabras y pistas de posición.",
+    "url": "https://phrazle.gg/",
+    "icon": "💬",
+    "tags": ["idioma", "frases", "juego"],
+    "category": "Educación interactiva",
+    "group": "Juegos derivados de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Numberle",
+    "description": "Una versión de Wordle para operaciones matemáticas. Encuentra la ecuación correcta.",
+    "url": "https://numberle.org/",
+    "icon": "➗",
+    "tags": ["matemáticas", "lógica", "juego"],
+    "category": "Educación interactiva",
+    "group": "Juegos derivados de Wordle",
+    "created": "2025-06-15"
+  }
+]
