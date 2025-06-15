@@ -10,4 +10,10 @@ module.exports = withMDX({
   env: {
     BASE_CONTENT_DIR: process.env.BASE_CONTENT_DIR,
   },
+  webpack(config, { isServer }) {
+    //if (!isServer) {
+      config.optimization.minimize = true;
+    //}
+    return config;
+  }
 })
