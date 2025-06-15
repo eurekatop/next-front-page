@@ -24,7 +24,8 @@ services:
     volumes:
       # - ./public:/app/public
       # - ./posts:/app/posts
-      - /var/www/eurekatop/public:/app/public
-      - /var/www/eurekatop/posts:/app/posts
-      - /var/www/eurekatop/featured:/app/featured
+      # - /var/www/eurekatop/public:/app/public
+      # - /var/www/eurekatop/posts:/app/posts
+      # - /var/www/eurekatop/featured:/app/featured
+      - /var/www/eurekatop/content:/app/content
     #restart: unless-stopped

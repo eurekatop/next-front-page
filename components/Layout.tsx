@@ -67,7 +67,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <Link rel="alternate" hrefLang="x-default" href="/blog/categories" className="nav-link">
       {t("topNav.categories")}
     </Link>
-    <Link rel="canonical" href="/mutiitu" className="nav-link">
+    <Link rel="canonical" href={`https://eurekatop.com/mutiitu`} className="nav-link">
       {t("topNav.old_blog")}
     </Link>
   </nav>
