@@ -37,6 +37,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <Head>
+         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <link
           rel="alternate"
           type="application/rss+xml"

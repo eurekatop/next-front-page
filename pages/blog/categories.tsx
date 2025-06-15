@@ -14,22 +14,26 @@ export default function CategoriesPage({
     <div className="page-wrapper">
       <aside className="sidebar-column-left"></aside>
 
-      <div>
-        <h1>{t("categories")}</h1>
-        <ul>
-          {categories.map((cat) => (
-            <li key={cat}>
-              <Link
-                rel="alternate"
-                hrefLang={`${i18n.language}`}
-                href={`/${i18n.language}/category/${cat}`}
-              >
-                {cat}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <main className="main-column">
+        <div>
+          <h1>{t("categories")}</h1>
+          <ul>
+            {categories.map((cat) => (
+              <li key={cat}>
+                <Link
+                  rel="alternate"
+                  hrefLang={`${i18n.language}`}
+                  href={`/${i18n.language}/category/${cat}`}
+                >
+                  {cat}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </main>
+
+      <aside className="sidebar-column"></aside>
     </div>
   );
 }
