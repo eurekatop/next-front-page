@@ -1,0 +1,155 @@
+[
+  {
+    "title": "WikiTrivia",
+    "description": "Ordena fets històrics en una línia temporal. Basat en dades de Wikidata.",
+    "url": "https://wikitrivia.tomjwatson.com/",
+    "icon": "📜",
+    "tags": ["history", "timeline", "wikidata"],
+    "category": "Educació interactiva",
+    "group": "Jocs de coneixement",
+    "author": "Tom J. Watson",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Neal.fun – Absurd Trolley Problems",
+    "description": "Resol dilemes morals amb humor.",
+    "url": "https://neal.fun/absurd-trolley-problems/",
+    "icon": "🚃",
+    "tags": ["ethics", "game", "fun"],
+    "category": "Educació interactiva",
+    "group": "Jocs de coneixement",
+    "author": "Neal Agarwal",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "The True Size Of...",
+    "description": "Explora com les projeccions distorsionen la mida real dels països.",
+    "url": "https://thetruesize.com/",
+    "icon": "🌍",
+    "tags": ["geography", "maps", "education"],
+    "category": "Visualització geogràfica",
+    "group": "Visualitzacions educatives",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "River Runner",
+    "description": "Segueix el recorregut d’una gota d’aigua fins al mar.",
+    "url": "https://river-runner-global.samlearner.com/",
+    "icon": "💧",
+    "tags": ["geography", "rivers", "3D"],
+    "category": "Visualització geogràfica",
+    "group": "Visualitzacions educatives",
+    "author": "Sam Learner",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "ChronoPhoto",
+    "description": "Endevina l'any d'una foto històrica.",
+    "url": "https://www.chronophoto.app/",
+    "icon": "📸",
+    "tags": ["history", "game", "photo"],
+    "category": "Educació interactiva",
+    "group": "Jocs de coneixement",
+    "created": "2025-06-15"
+  },
+  {
+  "title": "WhenTaken",
+  "description": "Endevina l'any d'una fotografia analitzant els seus detalls.",
+  "url": "https://whentaken.com/",
+  "icon": "🕰️",
+  "tags": ["history", "guess", "photo"],
+  "category": "Educació interactiva",
+  "group": "Jocs de coneixement",
+  "created": "2025-06-15"
+  },
+{
+  "title": "Whichyr",
+  "description": "Endevina l’any en què van passar esdeveniments, van sortir videojocs o pel·lícules.",
+  "url": "https://whichyr.com/",
+  "icon": "📅",
+  "tags": ["trivia", "history", "timeline"],
+  "category": "Educació interactiva",
+  "group": "Jocs de coneixement",
+  "created": "2025-06-15"
+},
+  {
+    "title": "Framed",
+    "description": "Endevina la pel·lícula a partir de fotogrames. Una versió cinèfila de Wordle.",
+    "url": "https://framed.wtf/",
+    "icon": "🎬",
+    "tags": ["film", "game", "visual"],
+    "category": "Educació interactiva",
+    "group": "Jocs derivats de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Gaps",
+    "description": "Omple els buits d'una frase. Joc lingüístic amb format minimalista.",
+    "url": "https://gaps.wtf/",
+    "icon": "🔤",
+    "tags": ["language", "game", "wordle"],
+    "category": "Educació interactiva",
+    "group": "Jocs derivats de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Sutom",
+    "description": "Versió francesa de Wordle amb lletres inicials donades.",
+    "url": "https://sutom.nocle.fr/",
+    "icon": "🇫🇷",
+    "tags": ["language", "game", "french"],
+    "category": "Educació interactiva",
+    "group": "Jocs derivats de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Globle",
+    "description": "Endevina un país al món. T’indica quins estan a prop.",
+    "url": "https://globle.org/",
+    "icon": "🗺️",
+    "tags": ["geography", "game", "world"],
+    "category": "Educació interactiva",
+    "group": "Jocs derivats de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Worldle",
+    "description": "Endevina el país a partir de la seva silueta i rebeu pistes basades en la distància.",
+    "url": "https://worldlegame.io/",
+    "icon": "🌍",
+    "tags": ["geography", "game", "silhouette"],
+    "category": "Educació interactiva",
+    "group": "Jocs derivats de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Flagle",
+    "description": "Endevina la bandera del país en el menor nombre de pistes possibles.",
+    "url": "https://flagle.gg/",
+    "icon": "🚩",
+    "tags": ["geography", "flags", "game"],
+    "category": "Educació interactiva",
+    "group": "Jocs derivats de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Phrazle",
+    "description": "Endevina frases completes a partir de paraules i pistes de posició.",
+    "url": "https://phrazle.gg/",
+    "icon": "💬",
+    "tags": ["language", "phrases", "game"],
+    "category": "Educació interactiva",
+    "group": "Jocs derivats de Wordle",
+    "created": "2025-06-15"
+  },
+  {
+    "title": "Numberle",
+    "description": "Una versió de Wordle per a operacions matemàtiques. Troba l'equació correcta.",
+    "url": "https://numberle.org/",
+    "icon": "➗",
+    "tags": ["math", "logic", "game"],
+    "category": "Educació interactiva",
+    "group": "Jocs derivats de Wordle",
+    "created": "2025-06-15"
+  }
+]

@@ -1,0 +1,51 @@
+.explorationsList {
+  padding: 0.5rem 0.75rem;
+  font-family: 'Courier New', monospace;
+  line-height: 1.4;
+}
+
+.description {
+  font-family: var(--font-variant), system-ui, sans-serif;
+  font-size: 0.75rem;
+}
+
+.author {
+  font-family: var(--font-variant), system-ui, sans-serif;
+  font-size: 0.55rem;
+}
+
+
+.title {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  margin-bottom: 0.5rem;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.icon {
+  font-size: 0.85rem;
+}
+
+.name {
+  font-size: 0.75rem;
+}

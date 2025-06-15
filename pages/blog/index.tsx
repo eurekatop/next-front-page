@@ -7,7 +7,9 @@ export default function BlogIndex({ posts }) {
   const { t } = useTranslation('common')
 
   return (
-    <div>
+<div className="page-wrapper">
+  <main className="main-column">
+      <div>
       <h1>{t('blog')}</h1>
       {posts.length === 0 ? (
         <p>{t('no_posts')}</p>
@@ -29,6 +31,11 @@ export default function BlogIndex({ posts }) {
         </ul>
       )}
     </div>
+  </main>
+</div>
+
+
+
   )
 }
 

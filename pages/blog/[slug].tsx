@@ -16,6 +16,10 @@ export default function PostPage({ source, frontmatter }) {
   const { t } = useTranslation("common");
 
   return (
+    <div className="page-wrapper">
+      <main className="main-column">
+
+    
     <>
       <Head>
         <title>{frontmatter.title ? `${frontmatter.title} | Eurekatop` : 'Fallback Title'}</title>
@@ -41,6 +45,10 @@ export default function PostPage({ source, frontmatter }) {
       <MDXRemote {...source} components={components} />
     </div>    
     </>
+
+      </main>
+    </div>
+
   );
 }
 
