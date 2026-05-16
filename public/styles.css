@@ -29,6 +29,27 @@
   flex-wrap: nowrap;
 }
 
+.page-wrapper-single {
+  align-items: stretch;
+}
+
+.home-column {
+  max-width: 900px;
+}
+
+.home-section {
+  margin-top: 3rem;
+}
+
+.home-section-muted {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 2rem;
+}
+
+.dark .home-section-muted {
+  border-top-color: #374151;
+}
+
 /* columna central */
 .main-column {
   flex: 0 1 auto;

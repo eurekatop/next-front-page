@@ -1,0 +1,30 @@
+---
+title: "Mirando cómo opencode habla con OpenAI usando mitmproxy"
+date: "2026-05-16"
+summary: "Una nota breve sobre inspeccionar tráfico local con mitmproxy para entender qué hace una herramienta cuando llama a la API de OpenAI."
+categories: ["notas", "herramientas", "ia", "debugging"]
+slug: "opencode-mitmproxy-openai"
+---
+
+Hoy he estado usando `mitmproxy` para mirar qué tráfico genera opencode cuando trabaja con modelos de OpenAI.
+
+No era una auditoría profunda ni una investigación especialmente sofisticada. Simplemente quería ver qué sale de mi máquina cuando una herramienta de desarrollo habla con una API externa.
+
+## Qué estaba mirando
+
+- Qué endpoints se llaman.
+- Qué forma tienen las peticiones.
+- Qué parte parece responsabilidad del cliente y qué parte queda delegada al proveedor.
+- Cómo se empaquetan los mensajes antes de llegar a la API.
+
+## Qué me interesó
+
+Lo útil no fue descubrir una gran vulnerabilidad ni nada parecido. Lo útil fue quitarle misterio a la herramienta.
+
+Cuando miras el tráfico ves que muchas piezas que parecen mágicas son bastante normales: una petición HTTP, unos headers, un cuerpo JSON, una respuesta en streaming y algo de lógica local alrededor.
+
+## Nota de higiene
+
+No tiene sentido publicar tokens, cabeceras sensibles ni payloads completos. La gracia de esta nota es el gesto: mirar debajo del capó para entender mejor una herramienta que uso.
+
+Me gustaría publicar más apuntes de este estilo: pequeños, concretos y sin la presión de convertir cada hallazgo en un artículo largo.

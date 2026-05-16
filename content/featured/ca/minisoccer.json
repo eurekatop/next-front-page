@@ -1,6 +1,6 @@
 {
   "title": "MiniSoccer",
-  "description": "Intentar marcar gol per tornar desde el començament !",
+  "description": "Experiment de joc minimalista basat en un bucle simple de reinici.",
   "href": "https://eurekatop.neocities.org/",
   "image": "/images/minisoccer.png"
 }

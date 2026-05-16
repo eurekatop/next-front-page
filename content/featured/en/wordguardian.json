@@ -1,6 +1,6 @@
 {
   "title": "WordGuardian",
-  "description": "A surreal definitions game with Wikidata and little of artificial Intelligence. Play it now!.",
+  "description": "A definitions game built around Wikidata and generated clues.",
   "href": "https://eurekatop.com/wordguardian/en/game",
   "image": "/images/wordguradian-post.png"
 }

@@ -1,5 +1,5 @@
 {
-    "welcome": "Benvingut a Eurekatop ", 
+    "welcome": "Eurekatop, quadern tècnic", 
     "read_more": "Llegeix més", 
     "category": "Categoria", 
     "change_language": "Canvia d’idioma", 
@@ -7,28 +7,34 @@
     "no_posts": "No hi ha articles disponibles.",
     "categories": "categories",
     "last_posts" : "Últims articles",
+    "recent_notes" : "Notes recents",
+    "archived_experiments" : "Experiments arxivats",
+    "interesting_links" : "Enllaços que m'interessen",
     "see_all_posts" : "Veure tots els articles",
     "light_mode": "☀️ Mode clar",
     "dark_mode": "🌙 Mode fosc",
     "topNav": {
         "home": "Inici",
-        "blog": "BLog",
+        "blog": "Blog",
         "categories": "Categories",
-        "old_blog": "Blog Antic"
+        "old_blog": "Arxiu"
     },
     "page" : {
         "index" : {
-            "welcome" : " Explora idees, tecnologia i contingut. Tot el que no sabies que volies llegir.",
-            "meta_title" : "Eurekatop – Paraules, Creativitat i Articles que Et Sorprendran",
-            "meta_desc" : "Explora Eurekatop, el blog en sobre cultura digital, memòria, tecnologia, música i intel·ligència artificial"
+            "welcome" : "Notes breus sobre programació, eines, IA i coses que vaig entenent mentre les provo.",
+            "notebook_intro" : "No és un aparador de productes mantinguts: és un lloc per deixar troballes, proves i petites investigacions sense convertir cada idea en un projecte acabat.",
+            "archived_experiments_desc" : "Projectes i demos que vaig construir per aprendre o provar una idea. Alguns ja no estan mantinguts, però conserven valor com a registre de procés.",
+            "interesting_links_desc" : "Una llista secundària de referències, jocs i visualitzacions que m'han donat idees.",
+            "meta_title" : "Eurekatop – Quadern tècnic personal",
+            "meta_desc" : "Notes breus sobre programació, eines, IA aplicada, experiments i troballes tècniques reals."
         }
     },
     "footer":{
-        "contact_us": "Contacta amb nosaltres"
+        "contact_us": "Contacta"
     },   
     "contact": {
         "title": "Contacta amb mi",
-        "subtitle": "Pots escriure’m el que vulguis. Et respondré aviat.",
+        "subtitle": "Si tens una consulta o proposta, escriu-me.",
         "send_button": "Enviar",
         "sending": "Enviant...",
         "sent_success": "✅ Missatge enviat!",

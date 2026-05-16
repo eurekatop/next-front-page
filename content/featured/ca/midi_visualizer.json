@@ -1,6 +1,6 @@
 {
-  "title": "🎼 MIDI Visualizer",
-  "description": "Un experiment visual que reprodueix fitxers MIDI i els mostra amb gràfics 3D sincronitzats amb Three.js i Tone.js.",
+  "title": "MIDI Visualizer",
+  "description": "Experiment audiovisual que reprodueix MIDI i el visualitza amb gràfics 3D sincronitzats amb Three.js i Tone.js.",
   "href": "https://fresh-skate.surge.sh",
   "image": "/images/midi-visualizer.png"
 }

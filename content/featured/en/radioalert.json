@@ -1,6 +1,6 @@
 {
   "title": "RadioAlert",
-  "description": "Live radio transcription with retro style, terminals and AI waves.",
+  "description": "Real-time radio transcription with Whisper and a minimalist interface.",
   "href": "/radioalert",
   "image": "/images/radio-alert.png"
 }

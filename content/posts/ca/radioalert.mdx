@@ -1,7 +1,7 @@
 ---
-title: "Transcripció en directe d'una emissora de ràdio amb Whisper en mode Vibe Coding"
+title: "Transcripció en directe d'una emissora de ràdio amb Whisper"
 date: "2025-06-09"
-summary: "Petit experiment que captura i transcriu en temps real un stream de ràdio amb Whisper, i en mostra les paraules clau en una web estil retro."
+summary: "Experiment per capturar i transcriure un stream de ràdio en temps real amb Whisper i mostrar-ne els fragments rellevants en una interfície minimalista."
 image: "/images/radio-alert.png"
 categories: ["experiments", "codificacio-creativa", "transcripcio", "vibecoding", "ia"]
 slug: "radio-alert"
@@ -10,11 +10,9 @@ slug: "radio-alert"
 
 # El projecte
 
-Aquest projecte és un petit experiment per capturar i transcriure en temps real un stream d’àudio d’una emissora de ràdio (RAC1) i mostrar-ne els fragments més rellevants mitjançant una interfície web minimalista. Tot plegat, automatitzat amb Docker.
+Aquest projecte captura i transcriu en temps real un stream d’àudio d’una emissora de ràdio (RAC1) i mostra els fragments més rellevants en una interfície web minimalista. Tot plegat està automatitzat amb Docker.
 
-És també una prova personal de *vibe coding*, feta amb un objectiu clar però sense planificació prèvia, simplement deixant-se portar per la intuïció i fins a qui punt pot accelerar el desenvolupament. Tot i que el projecte funciona, reconec que amb aquest procés s’hi perd part del plaer d’un coneixement estructurat i d’una planificació que faria la solució més robusta i escalable.
-
-Amb aquesta manera de programar, ràpida i improvisada, es tendeixen a obviar certes abstraccions i estructures que sovint són les que obren la porta a la creativitat més profunda: aquella que emergeix quan les eines no només funcionen, sinó que s'entenen perquè funcionen.
+També m’ha servit per validar un pipeline simple de captura, transcripció i filtratge, i per veure quines peces convé separar si es vol una base més robusta i escalable.
 
 
 ## Accedeix a la demo
@@ -94,4 +92,3 @@ eventSource.onmessage = function(event) {
 ---
 
 Un experiment en vibe coding per Francesc López Marió, 2025
-

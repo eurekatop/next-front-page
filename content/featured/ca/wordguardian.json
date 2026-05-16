@@ -1,6 +1,6 @@
 {
   "title": "WordGuardian",
-  "description": "Joc de definicions surrealistes amb aroma de Wikidata.",
+  "description": "Joc de definicions basat en Wikidata i generació de pistes.",
   "href": "https://eurekatop.com/wordguardian/ca/game",
   "image": "/images/wordguradian-post.png"
 }

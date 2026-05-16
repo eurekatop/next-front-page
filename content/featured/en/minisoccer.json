@@ -1,6 +1,6 @@
 {
   "title": "MiniSoccer",
-  "description": "Try to score a goal to start over!",
+  "description": "A minimal game experiment built around a simple restart loop.",
   "href": "https://eurekatop.neocities.org/",
   "image": "/images/minisoccer.png"
 }

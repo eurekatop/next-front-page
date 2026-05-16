@@ -5,7 +5,6 @@ import { useTranslation } from "next-i18next";
 import FeaturedProjects from "../components/FeaturedProjects";
 import { getFeaturedItems } from "../lib/featured";
 import { getGroupedExplorationItems } from "../lib/explorations";
-import TwoColumnLayout from "../components/TwoColumnLayout";
 import ExplorationsList from "../components/ExplorationsList";
 
 export default function Home({ posts, featured, groupedItems }) {
@@ -13,16 +12,13 @@ export default function Home({ posts, featured, groupedItems }) {
 
   return (
     <>
-      <div className="page-wrapper">
-        <aside className="sidebar-column-left"></aside>
-
-        <main className="main-column">
+      <div className="page-wrapper page-wrapper-single">
+        <main className="main-column home-column">
           <h1>{t("welcome")}</h1>
           <p>{t("page.index.welcome")}</p>
+          <p>{t("page.index.notebook_intro")}</p>
 
-          <FeaturedProjects featured={featured} />
-
-          <h2>{t("last_posts")}</h2>
+          <h2>{t("recent_notes")}</h2>
           <ul style={{ listStyle: "none", paddingLeft: 0 }}>
             {posts.slice(0, 5).map((post) => (
               <li className="card" key={post.slug}>
@@ -66,11 +62,19 @@ export default function Home({ posts, featured, groupedItems }) {
               {t("see_all_posts")}
             </Link>
           </p>
-        </main>
 
-        <aside className="sidebar-column">
-          <ExplorationsList groupedItems={groupedItems} />
-        </aside>
+          <section className="home-section">
+            <h2>{t("archived_experiments")}</h2>
+            <p>{t("page.index.archived_experiments_desc")}</p>
+            <FeaturedProjects featured={featured} />
+          </section>
+
+          <section className="home-section home-section-muted">
+            <h2>{t("interesting_links")}</h2>
+            <p>{t("page.index.interesting_links_desc")}</p>
+            <ExplorationsList groupedItems={groupedItems} />
+          </section>
+        </main>
       </div>
     </>
   );

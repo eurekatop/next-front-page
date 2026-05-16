@@ -1,5 +1,5 @@
 {
-    "welcome": "Welcome to Eurekatop", 
+    "welcome": "Eurekatop, a technical notebook", 
     "read_more": "Read more", 
     "category": "Category", 
     "change_language": "Change language", 
@@ -7,28 +7,34 @@
     "no_posts": "No posts available.", 
     "categories": "categories",
     "last_posts" : "Last posts",
-    "see_all_posts" : "Ver todos los artículos",
+    "recent_notes" : "Recent notes",
+    "archived_experiments" : "Archived experiments",
+    "interesting_links" : "Links I keep around",
+    "see_all_posts" : "See all posts",
     "light_mode": "☀️ Light mode",
     "dark_mode": "🌙 Dark mode",
     "topNav": {
         "home": "Home",
-        "blog": "BLog",
+        "blog": "Blog",
         "categories": "Categories",
-        "old_blog": "Old blog"
+        "old_blog": "Archive"
     },
     "page" : {
         "index" : {
-            "welcome" : "Explore ideas, technology, and content. Everything you didn't know you wanted to read.",
-            "meta_title": "Eurekatop – Words, Creativity, and Articles That Will Surprise You",
-            "meta_desc" : "Explore Eurekatop, the blog about digital culture, memory, technology, music, and artificial intelligence"
+            "welcome" : "Short notes about programming, tools, AI, and things I understand better by trying them.",
+            "notebook_intro" : "This is not a showcase of maintained products: it is a place for findings, tests, and small investigations that do not need to become finished projects.",
+            "archived_experiments_desc" : "Projects and demos I built to learn or test an idea. Some are no longer maintained, but they still document the process.",
+            "interesting_links_desc" : "A secondary list of references, games, and visualizations that gave me ideas.",
+            "meta_title": "Eurekatop – Personal technical notebook",
+            "meta_desc" : "Short notes about programming, tools, applied AI, experiments, and real technical findings."
         }
     },
     "footer":{
-        "contact_us": "Contacta amb nosaltres"
+        "contact_us": "Contact"
     },   
     "contact": {
     "title": "Contact me",
-    "subtitle": "You can write me whatever you want. I’ll get back to you soon.",
+    "subtitle": "If you have a question or proposal, write to me.",
     "send_button": "Send",
     "sending": "Sending...",
     "sent_success": "✅ Message sent!",

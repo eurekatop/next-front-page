@@ -1,6 +1,6 @@
 {
   "title": "RadioAlert",
-  "description": "Transcripción de radio con estilo retro, terminales e IA.",
+  "description": "Transcripción en tiempo real de una emisora de radio con Whisper y una interfaz minimalista.",
   "href": "/radioalert",
   "image": "/images/radio-alert.png"
 }
