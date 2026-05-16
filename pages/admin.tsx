@@ -68,6 +68,9 @@ export default function AdminPage() {
   const [notice, setNotice] = useState('')
   const [loading, setLoading] = useState(false)
   const uploadRef = useRef<HTMLInputElement | null>(null)
+  const previewRef = useRef<HTMLElement | null>(null)
+  const mdeRef = useRef<any>(null)
+  const scrollCleanupRef = useRef<(() => void) | null>(null)
 
   useEffect(() => {
     fetch('/api/admin/session')
@@ -261,6 +264,62 @@ export default function AdminPage() {
     setEditor((current) => ({ ...current, content: value || '' }))
   }, [])
 
+  const syncPreviewScroll = useCallback((codeMirror: any) => {
+    const preview = previewRef.current
+    if (!preview || previewMode !== 'live') return
+
+    const editorScroll = codeMirror.getScrollInfo()
+    const editorScrollable = editorScroll.height - editorScroll.clientHeight
+    const previewScrollable = preview.scrollHeight - preview.clientHeight
+
+    if (editorScrollable <= 0 || previewScrollable <= 0) {
+      preview.scrollTop = 0
+      return
+    }
+
+    preview.scrollTop = (editorScroll.top / editorScrollable) * previewScrollable
+  }, [previewMode])
+
+  const handleMdeInstance = useCallback((instance: any) => {
+    if (!instance || mdeRef.current === instance) return
+
+    scrollCleanupRef.current?.()
+    mdeRef.current = instance
+
+    const codeMirror = instance.codemirror
+    if (!codeMirror) return
+
+    const scrollHandler = () => syncPreviewScroll(codeMirror)
+    codeMirror.on('scroll', scrollHandler)
+    codeMirror.addKeyMap({
+      PageUp: (cm: any) => {
+        const scroll = cm.getScrollInfo()
+        cm.scrollTo(null, Math.max(0, scroll.top - scroll.clientHeight))
+      },
+      PageDown: (cm: any) => {
+        const scroll = cm.getScrollInfo()
+        cm.scrollTo(null, scroll.top + scroll.clientHeight)
+      },
+    })
+
+    scrollCleanupRef.current = () => {
+      codeMirror.off('scroll', scrollHandler)
+    }
+  }, [syncPreviewScroll])
+
+  useEffect(() => {
+    const codeMirror = mdeRef.current?.codemirror
+    if (codeMirror) {
+      window.requestAnimationFrame(() => syncPreviewScroll(codeMirror))
+    }
+  }, [editor.content, previewMode, fullscreenEditor, syncPreviewScroll])
+
+  useEffect(() => {
+    return () => {
+      scrollCleanupRef.current?.()
+    }
+  }, [])
+
   const editorOptions = useMemo(
     () => ({
       autofocus: false,
@@ -272,6 +331,10 @@ export default function AdminPage() {
       sideBySideFullscreen: false,
       spellChecker: false,
       status: false,
+      extraKeys: {
+        PageUp: false,
+        PageDown: false,
+      },
       toolbar: [
         'bold',
         'italic',
@@ -316,12 +379,13 @@ export default function AdminPage() {
       <SimpleMDE
         value={editor.content}
         onChange={handleEditorChange}
+        getMdeInstance={handleMdeInstance}
         options={editorOptions}
       />
     </div>
   )
 
-  const renderedPreview = <article className={styles.previewPane} dangerouslySetInnerHTML={{ __html: previewHtml }} />
+  const renderedPreview = <article ref={previewRef} className={styles.previewPane} dangerouslySetInnerHTML={{ __html: previewHtml }} />
 
   const markdownEditor = (
     <div className={fullscreenEditor ? styles.fullscreenEditorBody : styles.editorBodyWrap}>

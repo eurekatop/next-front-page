@@ -107,11 +107,15 @@
 }
 
 .editorBody {
+  --admin-editor-height: min(78vh, 920px);
   margin-top: 0.5rem;
+  min-height: 0;
 }
 
 .editorBodyWrap {
+  --admin-editor-height: min(78vh, 920px);
   margin-top: 0.5rem;
+  min-height: 0;
 }
 
 .richEditorGrid {
@@ -119,11 +123,13 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1rem;
   align-items: stretch;
+  min-height: 0;
 }
 
 .editorBody :global(.EasyMDEContainer),
 .fullscreenEditorBody :global(.EasyMDEContainer) {
   height: 100%;
+  min-height: 0;
 }
 
 .editorBody :global(.editor-toolbar),
@@ -172,6 +178,7 @@
 
 .editorBody :global(.CodeMirror),
 .fullscreenEditorBody :global(.CodeMirror) {
+  height: var(--admin-editor-height);
   border: 1px solid #d8dee9;
   border-top: 0;
   border-radius: 0 0 0.75rem 0.75rem;
@@ -181,10 +188,19 @@
   line-height: 1.55;
 }
 
+.editorBody :global(.CodeMirror-scroll),
+.fullscreenEditorBody :global(.CodeMirror-scroll) {
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: auto !important;
+}
+
 .previewPane {
-  min-height: 620px;
-  max-height: 720px;
-  overflow: auto;
+  height: var(--admin-editor-height);
+  min-height: 0;
+  max-height: none;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: 1.25rem;
   border: 1px solid #d8dee9;
   border-radius: 0.75rem;
@@ -243,13 +259,14 @@
 }
 
 .fullscreenEditorBody {
+  --admin-editor-height: calc(100vh - 120px);
   flex: 1;
   min-height: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .fullscreenEditorBody .previewPane {
-  height: calc(100vh - 190px);
+  height: var(--admin-editor-height);
   min-height: 0;
   max-height: none;
   overflow-y: auto;
