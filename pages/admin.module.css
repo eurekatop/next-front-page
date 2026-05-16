@@ -1,5 +1,5 @@
 .adminShell {
-  width: min(1180px, calc(100vw - 2rem));
+  width: min(1540px, calc(100vw - 1rem));
   margin: 0 auto;
 }
 
@@ -26,9 +26,13 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 1rem;
   align-items: start;
+}
+
+.gridFullscreen {
+  grid-template-columns: 250px minmax(0, 1fr);
 }
 
 .postList {
@@ -76,34 +80,189 @@
   font-weight: 600;
 }
 
-.editorGrid {
+.editorHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  color: #334155;
+}
+
+.editorActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.inlineLabel {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-weight: 600;
+}
+
+.inlineLabel select {
+  min-width: 160px;
+}
+
+.editorBody {
+  margin-top: 0.5rem;
+}
+
+.editorBodyWrap {
+  margin-top: 0.5rem;
+}
+
+.richEditorGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1rem;
-  margin-top: 1rem;
+  align-items: stretch;
 }
 
-.markdownTextarea {
-  min-height: 520px;
+.editorBody :global(.EasyMDEContainer),
+.fullscreenEditorBody :global(.EasyMDEContainer) {
+  height: 100%;
+}
+
+.editorBody :global(.editor-toolbar),
+.fullscreenEditorBody :global(.editor-toolbar) {
+  border-color: #d8dee9;
+  border-radius: 0.75rem 0.75rem 0 0;
+  background: #fff;
+  opacity: 1;
+}
+
+.editorBody :global(.editor-toolbar button),
+.fullscreenEditorBody :global(.editor-toolbar button) {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #111827 !important;
+  box-shadow: none;
+  font-size: 16px;
+  line-height: 30px;
+  transition: background 0.15s ease;
+}
+
+.editorBody :global(.editor-toolbar button:hover),
+.editorBody :global(.editor-toolbar button:focus),
+.editorBody :global(.editor-toolbar button.active),
+.fullscreenEditorBody :global(.editor-toolbar button:hover),
+.fullscreenEditorBody :global(.editor-toolbar button:focus),
+.fullscreenEditorBody :global(.editor-toolbar button.active) {
+  background: #e2e8f0;
+  color: #111827 !important;
+}
+
+.editorBody :global(.editor-toolbar button::before),
+.fullscreenEditorBody :global(.editor-toolbar button::before) {
+  color: #111827 !important;
+}
+
+.editorBody :global(.editor-toolbar i.separator),
+.fullscreenEditorBody :global(.editor-toolbar i.separator) {
+  border-left-color: #cbd5e1;
+  border-right-color: #fff;
+}
+
+.editorBody :global(.CodeMirror),
+.fullscreenEditorBody :global(.CodeMirror) {
+  border: 1px solid #d8dee9;
+  border-top: 0;
+  border-radius: 0 0 0.75rem 0.75rem;
+  color: #111827;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  line-height: 1.5;
+  font-size: 0.96rem;
+  line-height: 1.55;
 }
 
-.preview {
-  min-height: 520px;
+.previewPane {
+  min-height: 620px;
   max-height: 720px;
   overflow: auto;
-  padding: 1rem;
+  padding: 1.25rem;
   border: 1px solid #d8dee9;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   background: #fff;
-  line-height: 1.6;
+  color: #111827;
+  line-height: 1.65;
 }
 
-.preview img {
+.previewPane img {
   max-width: 100%;
   height: auto;
   border-radius: 0.5rem;
+}
+
+.previewPane pre {
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.fullscreenEditor {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: #f8fafc;
+}
+
+.fullscreenEditorTopbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d8dee9;
+  border-radius: 0.75rem;
+  background: #fff;
+}
+
+.fullscreenEditorTopbar span {
+  display: block;
+  margin-top: 0.2rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.fullscreenActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.fullscreenEditorBody {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.fullscreenEditorBody .previewPane {
+  height: calc(100vh - 190px);
+  min-height: 0;
+  max-height: none;
+  overflow-y: auto;
+}
+
+.fullscreenEditorBody .richEditorGrid {
+  height: 100%;
+  min-height: 0;
+}
+
+.fullscreenEditorBody .editorBody,
+.fullscreenEditorBody .previewPane {
+  min-height: 0;
 }
 
 .actions {
@@ -133,8 +292,13 @@
 
 @media (max-width: 900px) {
   .grid,
-  .editorGrid,
+  .richEditorGrid,
   .formGrid {
     grid-template-columns: 1fr;
+  }
+
+  .fullscreenEditorTopbar {
+    align-items: stretch;
+    flex-direction: column;
   }
 }

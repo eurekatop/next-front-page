@@ -1,5 +1,8 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
+import { ChangeEvent, FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import styles from './admin.module.css'
+
+const SimpleMDE = dynamic(() => import('react-simplemde-editor'), { ssr: false }) as any
 
 type Locale = 'ca' | 'es' | 'en'
 
@@ -29,6 +32,8 @@ type EditorState = {
   content: string
 }
 
+type PreviewMode = 'live' | 'edit' | 'preview'
+
 const locales: Locale[] = ['ca', 'es', 'en']
 
 const emptyPost = (locale: Locale): EditorState => ({
@@ -56,11 +61,12 @@ export default function AdminPage() {
   const [posts, setPosts] = useState<PostSummary[]>([])
   const [editor, setEditor] = useState<EditorState>(() => emptyPost('ca'))
   const [selectedSlug, setSelectedSlug] = useState('')
+  const [previewMode, setPreviewMode] = useState<PreviewMode>('live')
   const [previewHtml, setPreviewHtml] = useState('')
+  const [fullscreenEditor, setFullscreenEditor] = useState(false)
   const [error, setError] = useState('')
   const [notice, setNotice] = useState('')
   const [loading, setLoading] = useState(false)
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null)
   const uploadRef = useRef<HTMLInputElement | null>(null)
 
   useEffect(() => {
@@ -80,10 +86,10 @@ export default function AdminPage() {
     let cancelled = false
 
     Promise.all([import('marked'), import('dompurify')]).then(async ([markedModule, dompurifyModule]) => {
-      if (cancelled) return
       const html = await markedModule.marked.parse(editor.content || '')
-      if (cancelled) return
-      setPreviewHtml(dompurifyModule.default.sanitize(html))
+      if (!cancelled) {
+        setPreviewHtml(dompurifyModule.default.sanitize(html))
+      }
     })
 
     return () => {
@@ -191,8 +197,7 @@ export default function AdminPage() {
     }))
   }
 
-  async function savePost(event: FormEvent) {
-    event.preventDefault()
+  async function saveCurrentPost() {
     setError('')
     setNotice('')
 
@@ -212,6 +217,11 @@ export default function AdminPage() {
     } catch (saveError) {
       setError(saveError instanceof Error ? saveError.message : 'Could not save post')
     }
+  }
+
+  async function savePost(event: FormEvent) {
+    event.preventDefault()
+    await saveCurrentPost()
   }
 
   async function uploadImage(event: ChangeEvent<HTMLInputElement>) {
@@ -241,23 +251,90 @@ export default function AdminPage() {
   }
 
   function insertMarkdown(markdown: string) {
-    const textarea = textareaRef.current
-
-    if (!textarea) {
-      setEditor((current) => ({ ...current, content: `${current.content}\n${markdown}\n` }))
-      return
-    }
-
-    const start = textarea.selectionStart
-    const end = textarea.selectionEnd
-    const nextContent = `${editor.content.slice(0, start)}${markdown}${editor.content.slice(end)}`
-    setEditor((current) => ({ ...current, content: nextContent }))
-
-    window.requestAnimationFrame(() => {
-      textarea.focus()
-      textarea.setSelectionRange(start + markdown.length, start + markdown.length)
-    })
+    setEditor((current) => ({
+      ...current,
+      content: `${current.content}${current.content.endsWith('\n') || !current.content ? '' : '\n'}${markdown}\n`,
+    }))
   }
+
+  const handleEditorChange = useCallback((value: string) => {
+    setEditor((current) => ({ ...current, content: value || '' }))
+  }, [])
+
+  const editorOptions = useMemo(
+    () => ({
+      autofocus: false,
+      minHeight: fullscreenEditor ? 'calc(100vh - 190px)' : '620px',
+      previewClass: ['editor-preview', styles.markdownPreview],
+      renderingConfig: {
+        singleLineBreaks: false,
+      },
+      sideBySideFullscreen: false,
+      spellChecker: false,
+      status: false,
+      toolbar: [
+        'bold',
+        'italic',
+        'heading',
+        '|',
+        'quote',
+        'unordered-list',
+        'ordered-list',
+        '|',
+        'link',
+        'image',
+        'code',
+        'table',
+        '|',
+        'guide',
+      ],
+    }),
+    [fullscreenEditor],
+  )
+
+  const editorActions = (
+    <div className={styles.editorActions}>
+      <label className={styles.inlineLabel}>
+        View
+        <select value={previewMode} onChange={(event) => setPreviewMode(event.target.value as PreviewMode)}>
+          <option value="live">Editor + Preview</option>
+          <option value="edit">Editor only</option>
+          <option value="preview">Preview only</option>
+        </select>
+      </label>
+      <button className={styles.secondaryButton} type="button" onClick={() => uploadRef.current?.click()}>
+        Upload image
+      </button>
+      <button className={styles.secondaryButton} type="button" onClick={() => setFullscreenEditor((current) => !current)}>
+        {fullscreenEditor ? 'Exit full page' : 'Full page editor'}
+      </button>
+    </div>
+  )
+
+  const visualEditor = (
+    <div className={styles.editorBody}>
+      <SimpleMDE
+        value={editor.content}
+        onChange={handleEditorChange}
+        options={editorOptions}
+      />
+    </div>
+  )
+
+  const renderedPreview = <article className={styles.previewPane} dangerouslySetInnerHTML={{ __html: previewHtml }} />
+
+  const markdownEditor = (
+    <div className={fullscreenEditor ? styles.fullscreenEditorBody : styles.editorBodyWrap}>
+      {previewMode === 'edit' && visualEditor}
+      {previewMode === 'preview' && renderedPreview}
+      {previewMode === 'live' && (
+        <div className={styles.richEditorGrid}>
+          {visualEditor}
+          {renderedPreview}
+        </div>
+      )}
+    </div>
+  )
 
   if (checkingSession) {
     return <main className={styles.adminShell}>Checking session...</main>
@@ -298,7 +375,7 @@ export default function AdminPage() {
       {error && <p className={styles.dangerText}>{error}</p>}
       {notice && <p className={styles.successText}>{notice}</p>}
 
-      <div className={styles.grid}>
+      <div className={`${styles.grid} ${fullscreenEditor ? styles.gridFullscreen : ''}`}>
         <aside className={styles.panel}>
           <label className={styles.label}>
             Locale
@@ -416,31 +493,41 @@ export default function AdminPage() {
 
             <div className={styles.actions}>
               <button type="submit">Save post</button>
-              <button className={styles.secondaryButton} type="button" onClick={() => uploadRef.current?.click()}>
-                Upload image
-              </button>
+              {editorActions}
               <input ref={uploadRef} className={styles.hiddenInput} type="file" accept="image/*" onChange={uploadImage} />
             </div>
 
-            <div className={styles.editorGrid}>
-              <label className={styles.label}>
-                Markdown
-                <textarea
-                  ref={textareaRef}
-                  className={styles.markdownTextarea}
-                  value={editor.content}
-                  onChange={(event) => setEditor((current) => ({ ...current, content: event.target.value }))}
-                />
-              </label>
-
-              <div>
-                <strong>Preview</strong>
-                <article className={styles.preview} dangerouslySetInnerHTML={{ __html: previewHtml }} />
-              </div>
+            <div className={styles.editorHeader}>
+              <strong>Markdown editor</strong>
+              <span>{previewMode === 'live' ? 'Split editor and preview' : previewMode === 'edit' ? 'Editor only' : 'Preview only'}</span>
             </div>
+            {!fullscreenEditor && markdownEditor}
           </form>
         </section>
       </div>
+
+      {fullscreenEditor && (
+        <div className={styles.fullscreenEditor}>
+          <div className={styles.fullscreenEditorTopbar}>
+            <div>
+              <strong>{editor.frontmatter.title || 'Untitled post'}</strong>
+              <span>{editor.locale} / {editor.frontmatter.slug || 'new-post'}</span>
+            </div>
+            <div className={styles.fullscreenActions}>
+              <button type="button" onClick={saveCurrentPost}>
+                Save post
+              </button>
+              <button type="button" onClick={() => uploadRef.current?.click()}>
+                Upload image
+              </button>
+              <button type="button" onClick={() => setFullscreenEditor(false)}>
+                Exit full page
+              </button>
+            </div>
+          </div>
+          {markdownEditor}
+        </div>
+      )}
     </main>
   )
 }
