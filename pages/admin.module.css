@@ -1,0 +1,140 @@
+.adminShell {
+  width: min(1180px, calc(100vw - 2rem));
+  margin: 0 auto;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.panel {
+  padding: 1rem;
+  border: 1px solid #d8dee9;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.loginPanel {
+  max-width: 420px;
+  margin: 3rem auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.postList {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.postButton {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d8dee9;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: #111827;
+  text-align: left;
+}
+
+.postButtonActive {
+  border-color: #0070f3;
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.18);
+}
+
+.postMeta {
+  display: block;
+  margin-top: 0.25rem;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.editorGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.markdownTextarea {
+  min-height: 520px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  line-height: 1.5;
+}
+
+.preview {
+  min-height: 520px;
+  max-height: 720px;
+  overflow: auto;
+  padding: 1rem;
+  border: 1px solid #d8dee9;
+  border-radius: 0.5rem;
+  background: #fff;
+  line-height: 1.6;
+}
+
+.preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.secondaryButton {
+  background: #475569;
+}
+
+.dangerText {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.successText {
+  color: #047857;
+  font-weight: 600;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .grid,
+  .editorGrid,
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}
