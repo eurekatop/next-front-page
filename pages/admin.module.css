@@ -57,6 +57,11 @@
   box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.18);
 }
 
+.postButtonError {
+  border-color: #b91c1c;
+  box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.16);
+}
+
 .postMeta {
   display: block;
   margin-top: 0.25rem;
@@ -307,6 +312,51 @@
   display: none;
 }
 
+.toastError {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1200;
+  width: min(420px, calc(100vw - 2rem));
+  padding: 1rem 3rem 1rem 1rem;
+  border: 1px solid #fecaca;
+  border-radius: 0.75rem;
+  background: #fef2f2;
+  box-shadow: 0 16px 40px rgba(127, 29, 29, 0.18);
+  color: #7f1d1d;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.toastError details {
+  margin-top: 0.5rem;
+  color: #991b1b;
+  overflow-wrap: anywhere;
+}
+
+.toastError summary {
+  cursor: pointer;
+}
+
+.toastClose {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #7f1d1d;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.toastClose:hover {
+  background: #fee2e2;
+}
+
 @media (max-width: 900px) {
   .grid,
   .richEditorGrid,
@@ -317,5 +367,10 @@
   .fullscreenEditorTopbar {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .toastError {
+    left: 1rem;
+    right: 1rem;
   }
 }

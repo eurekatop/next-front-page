@@ -14,7 +14,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     return res.status(200).json({ post: readAdminPost(locale, slug) })
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Post not found'
+    const message = error instanceof Error && 'code' in error && error.code === 'ENOENT'
+      ? 'Post file not found'
+      : error instanceof Error ? error.message : 'Post not found'
     return res.status(404).json({ error: message })
   }
 }

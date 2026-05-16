@@ -65,6 +65,7 @@ export default function AdminPage() {
   const [previewHtml, setPreviewHtml] = useState('')
   const [fullscreenEditor, setFullscreenEditor] = useState(false)
   const [error, setError] = useState('')
+  const [postLoadError, setPostLoadError] = useState<{ slug: string; message: string; detail?: string } | null>(null)
   const [notice, setNotice] = useState('')
   const [loading, setLoading] = useState(false)
   const uploadRef = useRef<HTMLInputElement | null>(null)
@@ -140,6 +141,7 @@ export default function AdminPage() {
 
   async function loadPosts(nextLocale: Locale) {
     setError('')
+    setPostLoadError(null)
     setLoading(true)
 
     try {
@@ -154,6 +156,7 @@ export default function AdminPage() {
 
   async function loadPost(post: PostSummary) {
     setError('')
+    setPostLoadError(null)
     setNotice('')
 
     try {
@@ -168,7 +171,11 @@ export default function AdminPage() {
         content: data.post.content || '',
       })
     } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : 'Could not load post')
+      setPostLoadError({
+        slug: post.slug,
+        message: `No s'ha pogut obrir "${post.slug}". El fitxer no existeix o el slug no coincideix.`,
+        detail: loadError instanceof Error ? loadError.message : 'Could not load post',
+      })
     }
   }
 
@@ -176,6 +183,7 @@ export default function AdminPage() {
     setSelectedSlug('')
     setEditor(emptyPost(locale))
     setError('')
+    setPostLoadError(null)
     setNotice('')
   }
 
@@ -470,7 +478,7 @@ export default function AdminPage() {
             {!loading && posts.length === 0 && <p>No posts.</p>}
             {posts.map((post) => (
               <button
-                className={`${styles.postButton} ${selectedSlug === post.slug ? styles.postButtonActive : ''}`}
+                className={`${styles.postButton} ${selectedSlug === post.slug ? styles.postButtonActive : ''} ${postLoadError?.slug === post.slug ? styles.postButtonError : ''}`}
                 key={`${post.locale}-${post.slug}`}
                 type="button"
                 onClick={() => loadPost(post)}
@@ -480,6 +488,7 @@ export default function AdminPage() {
               </button>
             ))}
           </div>
+
         </aside>
 
         <section className={styles.panel}>
@@ -590,6 +599,16 @@ export default function AdminPage() {
             </div>
           </div>
           {markdownEditor}
+        </div>
+      )}
+
+      {postLoadError && (
+        <div className={styles.toastError} role="alert">
+          <button className={styles.toastClose} type="button" onClick={() => setPostLoadError(null)} aria-label="Tancar error">
+            ×
+          </button>
+          <strong>{postLoadError.message}</strong>
+          {postLoadError.detail && <details><summary>Detall tècnic</summary>{postLoadError.detail}</details>}
         </div>
       )}
     </main>
