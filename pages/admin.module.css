@@ -1,0 +1,429 @@
+.adminShell {
+  --admin-surface: #fff;
+  --admin-surface-muted: #f8fafc;
+  --admin-text: #111827;
+  --admin-heading: #0f172a;
+  --admin-border: #d8dee9;
+  --admin-muted: #64748b;
+  --admin-editor-hover: #e2e8f0;
+  width: min(1540px, calc(100vw - 1rem));
+  margin: 0 auto;
+}
+
+:global(.dark) .adminShell {
+  --admin-surface: #1f2937;
+  --admin-surface-muted: #0f172a;
+  --admin-text: #e5e7eb;
+  --admin-heading: #f9fafb;
+  --admin-border: #374151;
+  --admin-muted: #9ca3af;
+  --admin-editor-hover: #334155;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.panel {
+  padding: 1rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--admin-surface) 88%, transparent);
+  color: var(--admin-text);
+}
+
+.loginPanel {
+  max-width: 420px;
+  margin: 3rem auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.gridFullscreen {
+  grid-template-columns: 250px minmax(0, 1fr);
+}
+
+.postList {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.postButton {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.5rem;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  text-align: left;
+}
+
+.postButtonActive {
+  border-color: #0070f3;
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.18);
+}
+
+.postButtonError {
+  border-color: #b91c1c;
+  box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.16);
+}
+
+.postMeta {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--admin-muted);
+  font-size: 0.85rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.editorHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  color: var(--admin-muted);
+}
+
+.editorActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.inlineLabel {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-weight: 600;
+}
+
+.inlineLabel select {
+  min-width: 160px;
+}
+
+.editorBody {
+  --admin-editor-height: min(78vh, 920px);
+  margin-top: 0.5rem;
+  min-height: 0;
+}
+
+.editorBodyWrap {
+  --admin-editor-height: min(78vh, 920px);
+  margin-top: 0.5rem;
+  min-height: 0;
+}
+
+.richEditorGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+  min-height: 0;
+}
+
+.editorBody :global(.EasyMDEContainer),
+.fullscreenEditorBody :global(.EasyMDEContainer) {
+  height: 100%;
+  min-height: 0;
+}
+
+.editorBody :global(.editor-toolbar),
+.fullscreenEditorBody :global(.editor-toolbar) {
+  border-color: var(--admin-border);
+  border-radius: 0.75rem 0.75rem 0 0;
+  background: var(--admin-surface);
+  opacity: 1;
+}
+
+.editorBody :global(.editor-toolbar button),
+.fullscreenEditorBody :global(.editor-toolbar button) {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--admin-text) !important;
+  box-shadow: none;
+  font-size: 16px;
+  line-height: 30px;
+  transition: background 0.15s ease;
+}
+
+.editorBody :global(.editor-toolbar button:hover),
+.editorBody :global(.editor-toolbar button:focus),
+.editorBody :global(.editor-toolbar button.active),
+.fullscreenEditorBody :global(.editor-toolbar button:hover),
+.fullscreenEditorBody :global(.editor-toolbar button:focus),
+.fullscreenEditorBody :global(.editor-toolbar button.active) {
+  background: var(--admin-editor-hover);
+  color: var(--admin-heading) !important;
+}
+
+.editorBody :global(.editor-toolbar button::before),
+.fullscreenEditorBody :global(.editor-toolbar button::before) {
+  color: var(--admin-text) !important;
+}
+
+.editorBody :global(.editor-toolbar i.separator),
+.fullscreenEditorBody :global(.editor-toolbar i.separator) {
+  border-left-color: var(--admin-border);
+  border-right-color: var(--admin-surface);
+}
+
+.editorBody :global(.CodeMirror),
+.fullscreenEditorBody :global(.CodeMirror) {
+  height: var(--admin-editor-height);
+  border: 1px solid var(--admin-border);
+  border-top: 0;
+  border-radius: 0 0 0.75rem 0.75rem;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+
+.editorBody :global(.CodeMirror-cursor),
+.fullscreenEditorBody :global(.CodeMirror-cursor) {
+  border-left-color: var(--admin-heading);
+}
+
+.editorBody :global(.CodeMirror-selected),
+.fullscreenEditorBody :global(.CodeMirror-selected) {
+  background: color-mix(in srgb, var(--admin-editor-hover) 72%, transparent) !important;
+}
+
+.editorBody :global(.CodeMirror-line),
+.fullscreenEditorBody :global(.CodeMirror-line) {
+  color: var(--admin-text);
+}
+
+.editorBody :global(.CodeMirror-scroll),
+.fullscreenEditorBody :global(.CodeMirror-scroll) {
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: auto !important;
+}
+
+.previewPane {
+  height: var(--admin-editor-height);
+  min-height: 0;
+  max-height: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.25rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.75rem;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  line-height: 1.65;
+}
+
+.previewPane :global(h1),
+.previewPane :global(h2),
+.previewPane :global(h3),
+.previewPane :global(h4),
+.previewPane :global(h5),
+.previewPane :global(h6) {
+  color: var(--admin-heading);
+}
+
+.previewPane :global(p),
+.previewPane :global(li),
+.previewPane :global(blockquote),
+.previewPane :global(td),
+.previewPane :global(th) {
+  color: var(--admin-text);
+}
+
+.previewPane img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.previewPane pre {
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.fullscreenEditor {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--admin-surface-muted);
+  color: var(--admin-text);
+}
+
+.fullscreenEditorTopbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.75rem;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+}
+
+.fullscreenEditorTopbar span {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--admin-muted);
+  font-size: 0.9rem;
+}
+
+.fullscreenActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.fullscreenEditorBody {
+  --admin-editor-height: calc(100vh - 120px);
+  flex: 1;
+  min-height: 0;
+  overflow: visible;
+}
+
+.fullscreenEditorBody .previewPane {
+  height: var(--admin-editor-height);
+  min-height: 0;
+  max-height: none;
+  overflow-y: auto;
+}
+
+.fullscreenEditorBody .richEditorGrid {
+  height: 100%;
+  min-height: 0;
+}
+
+.fullscreenEditorBody .editorBody,
+.fullscreenEditorBody .previewPane {
+  min-height: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.secondaryButton {
+  background: #475569;
+}
+
+.dangerText {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.successText {
+  color: #047857;
+  font-weight: 600;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.toastError {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1200;
+  width: min(420px, calc(100vw - 2rem));
+  padding: 1rem 3rem 1rem 1rem;
+  border: 1px solid #fecaca;
+  border-radius: 0.75rem;
+  background: #fef2f2;
+  box-shadow: 0 16px 40px rgba(127, 29, 29, 0.18);
+  color: #7f1d1d;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.toastError details {
+  margin-top: 0.5rem;
+  color: #991b1b;
+  overflow-wrap: anywhere;
+}
+
+.toastError summary {
+  cursor: pointer;
+}
+
+.toastClose {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #7f1d1d;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.toastClose:hover {
+  background: #fee2e2;
+}
+
+@media (max-width: 900px) {
+  .grid,
+  .richEditorGrid,
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fullscreenEditorTopbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .toastError {
+    left: 1rem;
+    right: 1rem;
+  }
+}

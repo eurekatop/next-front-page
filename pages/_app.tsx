@@ -1,5 +1,6 @@
 import '../public/global.css'
 import '../public/styles.css'
+import 'easymde/dist/easymde.min.css'
 import { AppProps } from 'next/app'
 import { appWithTranslation } from 'next-i18next'
 import Layout from '../components/Layout'
