@@ -156,6 +156,30 @@ li {
   margin-bottom: 1rem;
 }
 
+/* -------- Blog post content -------- */
+.post-content img,
+.post-content svg,
+.post-content video,
+.post-content canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-content img {
+  display: block;
+  margin: 1rem auto;
+}
+
+.post-content iframe,
+.post-content embed,
+.post-content object {
+  max-width: 100%;
+}
+
+.post-content pre {
+  overflow-x: auto;
+}
+
 /* -------- Footer -------- */
 footer {
   font-size: 0.9rem;

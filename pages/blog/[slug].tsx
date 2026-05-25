@@ -42,7 +42,9 @@ export default function PostPage({ source, frontmatter }) {
           }}
         />
       )}
-      <MDXRemote {...source} components={components} />
+      <article className="post-content">
+        <MDXRemote {...source} components={components} />
+      </article>
     </div>    
     </>
 
