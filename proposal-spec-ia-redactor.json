@@ -1,0 +1,16 @@
+{
+  "locale": "ca",
+  "frontmatter": {
+    "title": "{title}",
+    "date": "2026-05-17",
+    "summary": "{summary}",
+    "slug": "{slug}",
+    "image": "",
+    "imageAlt": "",
+    "categories": ["blog", "productivitat"],
+    "tags": ["multiidioma", "ia", "opencode", "blog", "examples tags before", "{tags}"],
+    "author": "Francesc",
+    "featured": false
+  },
+  "content": "{markdownContent}"
+}
